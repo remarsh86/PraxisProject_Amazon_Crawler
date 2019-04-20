@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93e16cd5-44fc-408a-92c6-f68bc16600b2" name="Default Changelist" comment="" />
+    <list default="true" id="93e16cd5-44fc-408a-92c6-f68bc16600b2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/amazon_crawler/proxy_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+            <state relative-caret-position="1">
+              <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -51,30 +55,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="36" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="336">
+              <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
               <folding>
-                <element signature="e#1199#4114#0" />
-                <element signature="e#4170#4494#0" />
-                <element signature="e#4551#4758#0" />
-                <element signature="e#4808#4899#0" />
-                <element signature="e#4957#5060#0" />
-                <element signature="e#5111#5210#0" />
-                <element signature="e#5265#5555#0" />
-                <element signature="e#5611#5997#0" />
-                <element signature="e#6064#6522#0" />
-                <element signature="e#6589#7211#0" />
-                <element signature="e#7271#7663#0" />
-                <element signature="e#7722#8095#0" />
-                <element signature="e#8155#8460#0" />
-                <element signature="e#8520#8830#0" />
-                <element signature="e#8879#9214#0" />
-                <element signature="e#9269#9803#0" />
-                <element signature="e#9868#10154#0" />
-                <element signature="e#10212#10491#0" />
-                <element signature="e#13761#14723#0" />
-                <element signature="e#14880#15059#0" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="5" selection-start-column="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -96,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/amazon_crawler/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
+            <state relative-caret-position="630">
               <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#168#181#0" expanded="true" />
@@ -132,6 +126,9 @@
       <replace>get</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -146,16 +143,18 @@
         <option value="$PROJECT_DIR$/amazon_crawler/middlewares.py" />
         <option value="$PROJECT_DIR$/amazon_crawler/settings.py" />
         <option value="$PROJECT_DIR$/amazon_crawler/pipelines.py" />
-        <option value="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" />
         <option value="$PROJECT_DIR$/amazon_crawler/proxy_manager.py" />
+        <option value="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1073" />
+    <option name="width" value="1397" />
     <option name="height" value="797" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -182,18 +181,7 @@
           <expand>
             <path>
               <item name="amazon_crawler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/Docs/A_SoSe2019/Praxis_Project_VoiceQueries/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="amazon_crawler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/Docs/A_SoSe2019/Praxis_Project_VoiceQueries/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="amazon_crawler" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="amazon_crawler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/Docs/A_SoSe2019/Praxis_Project_VoiceQueries/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="amazon_crawler" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="spiders" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="~/Documents/PraxisProject_Amazon_Crawler/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -202,8 +190,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rumourVeracityTrain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -237,11 +229,13 @@
       <workItem from="1555593555603" duration="567000" />
       <workItem from="1555594834249" duration="234000" />
       <workItem from="1555597087089" duration="4952000" />
+      <workItem from="1555753996299" duration="581000" />
+      <workItem from="1555756378960" duration="1022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5753000" />
+    <option name="totallyTimeSpent" value="7356000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -253,9 +247,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1073" height="797" extended-state="0" />
+    <frame x="0" y="23" width="1397" height="797" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992764" visible="true" weight="0.3530553" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992764" visible="true" weight="0.27749076" />
       <window_info id="Structure" order="1" sideWeight="0.5007236" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5007236" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -267,8 +262,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32960325" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32858595" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014549" side_tool="true" visible="true" weight="0.28794327" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4985451" visible="true" weight="0.28794327" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.502583" side_tool="true" visible="true" weight="0.28794327" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49741697" visible="true" weight="0.28794327" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -320,8 +315,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/amazon_crawler/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/amazon_crawler/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/amazon_crawler/settings.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -329,6 +328,12 @@
           <caret line="59" column="70" selection-start-line="59" selection-start-column="70" selection-end-line="59" selection-end-column="70" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amazon_crawler/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/remaining_laptops.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/amazon_crawler/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -339,7 +344,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/amazon_crawler/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
+        <state relative-caret-position="630">
           <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#168#181#0" expanded="true" />
@@ -347,52 +352,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/amazon_crawler/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/remaining_laptops.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="36" />
-          <folding>
-            <element signature="e#1199#4114#0" />
-            <element signature="e#4170#4494#0" />
-            <element signature="e#4551#4758#0" />
-            <element signature="e#4808#4899#0" />
-            <element signature="e#4957#5060#0" />
-            <element signature="e#5111#5210#0" />
-            <element signature="e#5265#5555#0" />
-            <element signature="e#5611#5997#0" />
-            <element signature="e#6064#6522#0" />
-            <element signature="e#6589#7211#0" />
-            <element signature="e#7271#7663#0" />
-            <element signature="e#7722#8095#0" />
-            <element signature="e#8155#8460#0" />
-            <element signature="e#8520#8830#0" />
-            <element signature="e#8879#9214#0" />
-            <element signature="e#9269#9803#0" />
-            <element signature="e#9868#10154#0" />
-            <element signature="e#10212#10491#0" />
-            <element signature="e#13761#14723#0" />
-            <element signature="e#14880#15059#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/amazon_crawler/proxy_manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        <state relative-caret-position="1">
+          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
