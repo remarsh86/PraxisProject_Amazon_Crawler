@@ -1,0 +1,11 @@
+Server: Server
+Content-Type: text/html;charset=UTF-8
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+Location: https://www.amazon.com/Laptops-Computers-Tablets/s?ie=UTF8&page=143&rh=n%3A565108
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: T5AZXNCC2KSJWBHKQ1A1
+Date: Fri, 15 Feb 2019 15:45:49 GMT

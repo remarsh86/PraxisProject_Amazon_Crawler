@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:28:47 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/HP-EliteBook-Professional-Certified-Refurbished/dp/B07GT9735R
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: V0GX7RQ6SSMVG8DP99TN
+X-Cache: Miss from cloudfront
+Via: 1.1 c330303fb3ed6dc00c10c4b7132a35ea.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: psUwefps0OtJFU6AGBqXRfU5lSnVCWCNKaLQkv3VrE6wuZsbBuH55w==

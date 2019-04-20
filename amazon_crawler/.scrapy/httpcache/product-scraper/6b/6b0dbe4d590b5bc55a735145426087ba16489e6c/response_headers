@@ -1,0 +1,11 @@
+Server: Server
+Content-Type: text/html;charset=UTF-8
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+X-Ua-Compatible: IE=edge
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: A4H20H1DVF96JPD3A4EN
+Date: Fri, 15 Feb 2019 15:45:40 GMT

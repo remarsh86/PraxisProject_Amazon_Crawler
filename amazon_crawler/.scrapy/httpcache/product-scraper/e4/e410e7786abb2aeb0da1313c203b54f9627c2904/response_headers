@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:29:05 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/HP-3XJ59UT-ABA-Probook-Notebook/dp/B07BRNFBBH
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: HPB28J6RSD079TADN6PV
+X-Cache: Miss from cloudfront
+Via: 1.1 e4ecc96288b451841e36a1e43133180f.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: gPTrxuG_lxoJE0AadT0VMywStSRcNsY5ihSj8hSwBZw8s_j-uA3KMg==

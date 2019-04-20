@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:29:05 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Lenovo-Touchscreen-Quad-Core-i7-7700HQ-Dedicated/dp/B07DJXFC7Q
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: F5QV009P2DB9RV3AF2P1
+X-Cache: Miss from cloudfront
+Via: 1.1 cd4b79d908b8b3c94403c295da207ecc.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: 4-QFPzFNdZa0uc3D0PMzJ0zUxYC6K5jFY8T4E1hs3Zvn3AjtZKvQbA==

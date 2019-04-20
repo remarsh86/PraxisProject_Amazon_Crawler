@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:29:08 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Lenovo-ThinkPad-P51-E3-1505M-Fingerprint/dp/B07CT3KN7H
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: N30D4CC6CAXW6HXR4VPM
+X-Cache: Miss from cloudfront
+Via: 1.1 c6beacfa7e0930087b5236b67c6aec92.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: a5gUisIzNRdXH22yF1RW7cuL5AO94ixGdwY2ezkPsLe39u310Ou_hw==

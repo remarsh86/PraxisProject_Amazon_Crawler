@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:29:57 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Lenovo-Thinkpad-Carbon-2014-Ultrabook/dp/B00LH3ZPBS
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: JH10JRHE7KVCR56HN88Y
+X-Cache: Miss from cloudfront
+Via: 1.1 cd4b79d908b8b3c94403c295da207ecc.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: -_fYUgoQUQ_Kd64f9r6oLngGQN68i5FWBg1bqWp--UEVRiwUY-1PFg==

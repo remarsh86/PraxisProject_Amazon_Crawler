@@ -1,0 +1,13 @@
+Server: Server
+Content-Type: text/html;charset=UTF-8
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Acer-AO722-BZ454-11-6-Inch-Processor-Espresso/dp/B004UR16ES
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: Y43TZRZ12M00S6ZYQ8KD
+Date: Thu, 21 Feb 2019 14:58:23 GMT

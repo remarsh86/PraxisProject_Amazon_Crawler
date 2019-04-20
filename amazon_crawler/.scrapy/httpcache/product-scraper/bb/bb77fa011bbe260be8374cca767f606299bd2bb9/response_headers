@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:28:42 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/HP-Elitebook-520M-Bluetooth-Fingerprint/dp/B00D63OYLE
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: N3ARDTRVM07S41KQ4XD5
+X-Cache: Miss from cloudfront
+Via: 1.1 0e89b33d4f00b8c06451feba103bf01a.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: CuERocrOzy0fKTDu71bUjdiecbYYJyqLcdc0tJGHi0RgR5mX5--AVQ==

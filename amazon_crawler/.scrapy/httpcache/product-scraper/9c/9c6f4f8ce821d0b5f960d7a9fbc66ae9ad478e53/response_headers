@@ -1,0 +1,13 @@
+Server: Server
+Content-Type: text/html;charset=UTF-8
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Dell-InfinityEdge-TouchScreen-1920x1080-Refurbished/dp/B07B8Y4KHS
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: NMYPYMY4W1ZS5BHCXG80
+Date: Fri, 15 Feb 2019 22:28:07 GMT

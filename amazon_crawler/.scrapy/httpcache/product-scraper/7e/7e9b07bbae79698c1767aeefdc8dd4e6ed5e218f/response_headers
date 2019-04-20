@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Thu, 21 Feb 2019 15:58:55 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/HP-Flagship-Notebook-Certified-Refurbished/dp/B079Y8RTBC
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: VGFHBW7Y6EV20YPA5YA2
+X-Cache: Miss from cloudfront
+Via: 1.1 04e581aa5852d3f5018b5cbab537a248.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: dZR0H7YrVptDAXronn-1K4rcfEP-At9TdA07M1Avl8ICA1k9dFNjCA==

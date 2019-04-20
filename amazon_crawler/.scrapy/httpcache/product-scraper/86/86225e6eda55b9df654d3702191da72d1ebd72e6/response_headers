@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:28:59 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/ASUS-VivoBook-E12-E203MA-Lightweight/dp/B07KC268S6
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: H038ZN8CNFK7DW0YR40Z
+X-Cache: Miss from cloudfront
+Via: 1.1 c6beacfa7e0930087b5236b67c6aec92.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: UzhWMpqJg2d783QLGF75yupXT2V6INNazPqFiLdENgbWX_Achddl-w==

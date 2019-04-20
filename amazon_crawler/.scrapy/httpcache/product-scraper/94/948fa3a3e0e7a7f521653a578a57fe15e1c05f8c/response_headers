@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:30:16 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/GL753VE-i7-7700HQ-Graphics-Certified-Refurbished/dp/B07DVR8SR6
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: GRJGFKKM6SGXHE6G985K
+X-Cache: Miss from cloudfront
+Via: 1.1 cd4b79d908b8b3c94403c295da207ecc.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: Jg2_FKFoOwq5EIuXnO8zJ6VGagz2unS3T5xytUFqxPY2c4_5om6yNA==

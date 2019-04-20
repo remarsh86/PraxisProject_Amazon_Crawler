@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Thu, 21 Feb 2019 15:58:54 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Alienware-Touchscreen-Keyboard-i7-5500U-Dual-Core/dp/B07DGV8B87
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: RYAH7TE483ADX0J12RSK
+X-Cache: Miss from cloudfront
+Via: 1.1 48360f1c1631a8046a5f9ac8aaa98afd.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: YaWoZetvz4mLzqd8KpxTjASslYb0S4rTQKemsOs5EI-g_Z2ZWrt9Ig==

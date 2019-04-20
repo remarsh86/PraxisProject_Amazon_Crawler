@@ -1,0 +1,12 @@
+Server: Server
+Content-Type: text/plain
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+X-Amz-Request-Id: B022D1E723A012B1
+Last-Modified: Mon, 02 Jul 2018 05:29:58 GMT
+Etag: "9f1eb533c38362973e7e80e56bad89b2-gzip"
+Accept-Ranges: bytes
+Vary: Accept-Encoding,X-Amzn-CDN-Cache,User-Agent
+Content-Encoding: gzip
+X-Amz-Rid: MSP15XVEFZ26CSBPKBXP
+X-Frame-Options: SAMEORIGIN
+Date: Sun, 10 Feb 2019 13:21:07 GMT

@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:30:16 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/ASUS-VivoBook-Convertible-Certified-Refurbished/dp/B07KD88446
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: KK9NTJ62D45E5067YKT1
+X-Cache: Miss from cloudfront
+Via: 1.1 0e89b33d4f00b8c06451feba103bf01a.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: s_9SxnQ7lcpxiWID41Sm_yxQBWZwVO_cMk-V3nGICfajK2Ygh09ZrQ==

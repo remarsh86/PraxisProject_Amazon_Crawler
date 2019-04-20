@@ -1,0 +1,12 @@
+Content-Type: text/html
+Server: Server
+Date: Fri, 15 Feb 2019 22:33:33 GMT
+Vary: Content-Type,Host,Cookie,Accept-Encoding,X-Amzn-CDN-Cache,User-Agent
+Last-Modified: Fri, 18 Jan 2019 21:39:11 GMT
+Etag: "a6f-57fc257719dc0-gzip"
+Accept-Ranges: bytes
+Content-Encoding: gzip
+X-Amz-Rid: T0ZN0996ZHNZ7YM6CJQP
+X-Cache: Error from cloudfront
+Via: 1.1 c330303fb3ed6dc00c10c4b7132a35ea.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: itOH7UA9AyB0GdIMdv49vzfnEEkupwipcZiaiJ1bmPxfJ2yTDIAx5A==

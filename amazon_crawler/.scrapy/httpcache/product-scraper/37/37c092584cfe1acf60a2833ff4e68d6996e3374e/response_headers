@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:28:27 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Alienware-Gaming-Laptop-i7-8750H-Windows/dp/B07F2NBHVT
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: JPP7JMBW760G0V6X7KXE
+X-Cache: Miss from cloudfront
+Via: 1.1 e56a28552ea707fbe41d2459b224fe31.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: EukOsHpTwaNDcLj8Yv2TTM5-xjvASnRjQLZq-SBJGGUQGeXbnF6nFw==

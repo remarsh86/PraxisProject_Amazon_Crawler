@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:29:44 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Dell-XPS-13-9360-Laptop/dp/B078N1YYSJ
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: 2ZQXEMR5X80DH6K14G37
+X-Cache: Miss from cloudfront
+Via: 1.1 c330303fb3ed6dc00c10c4b7132a35ea.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: yKLe_iL-0eXOx9VJJ8esq2e-u8WOSTOgEmGD8d6b-rB-oXf6RCUpxA==

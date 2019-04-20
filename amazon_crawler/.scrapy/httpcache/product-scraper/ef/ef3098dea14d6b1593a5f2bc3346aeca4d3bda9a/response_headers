@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:28:35 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Apple-MacBook-15-4-Inch-Processor-Refurbished/dp/B0161ZD3KG
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: 74ZHR6QASTFQSG8EFSQ4
+X-Cache: Miss from cloudfront
+Via: 1.1 a566a41eba3a4a4b44754d88b87b815e.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: XARHJrUm8TMGByZfF4Z5SHLGVK2VLdn0TLOW45PcH_bDWWPb6iBjEw==

@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:29:10 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Apple-MacBook-Laptop-i5-4250U-Refurbished/dp/B07JVJFHVN
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: SQP36AM42WYF3YG4RYDW
+X-Cache: Miss from cloudfront
+Via: 1.1 e56a28552ea707fbe41d2459b224fe31.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: TTdXmOyZcM4CZuxHiQVzcgOU0o6DCLZQZ_QlbJw2aE3dGq0y0CKNrQ==

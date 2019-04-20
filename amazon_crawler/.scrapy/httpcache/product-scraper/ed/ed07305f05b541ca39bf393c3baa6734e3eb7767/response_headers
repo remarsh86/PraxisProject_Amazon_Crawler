@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 22 Feb 2019 16:16:23 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/Apple-15-4-Inch-Computer-Processor-Refurbished/dp/B079RY342N
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: 658NF0GN62HEQSK67B9C
+X-Cache: Miss from cloudfront
+Via: 1.1 e364a215258bbfb310702eaedcb82e22.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: Tjat-mxZId1HDnmie_ElcykndLWpxbXIL8a8ySoLmOFrJMK1YdP7gA==

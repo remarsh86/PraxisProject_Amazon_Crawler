@@ -1,0 +1,16 @@
+Content-Type: text/html;charset=UTF-8
+Server: Server
+Date: Fri, 15 Feb 2019 22:28:52 GMT
+Strict-Transport-Security: max-age=47474747; includeSubDomains; preload
+Vary: Accept-Encoding,User-Agent,X-Amzn-CDN-Cache
+P3P: policyref="https://www.amazon.com/w3c/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Location: https://www.amazon.com/HP-6570B-i5-3210m-Windows-Professional/dp/B07DXZ18NH
+Cache-Control: no-cache, no-transform
+Content-Encoding: gzip
+X-Xss-Protection: 1;
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Amz-Rid: EKQ5109CQZNV5X7MAC1R
+X-Cache: Miss from cloudfront
+Via: 1.1 a566a41eba3a4a4b44754d88b87b815e.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: 7T0s65oKwVFFRroJk5DQBLyZ4TShMXuXenMwiV30fEo1bdkbiVhWxA==
