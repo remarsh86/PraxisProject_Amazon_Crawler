@@ -33,8 +33,7 @@ class ProductSpider(scrapy.Spider):
         if limit < 100:
             #start_urls.append("file:///Users/rebeccamarsh/Documents/PraxisProject_Amazon_Crawler/amazon_crawler/product_xml_files/" + str(file))	#replace with your local path
 
-            #not sure if this relative path works....(Rebecca)
-            #start_urls.append("/product_xml_files/" + str(file))	#replace with your local path
+            #Relative Path for all to use:
             start_urls.append("file://" + os.path.realpath("../product_xml_files") + "/" + str(file))	#replace with your local path
 
         else:
