@@ -2,16 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93e16cd5-44fc-408a-92c6-f68bc16600b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/amazon_crawler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/amazon_crawler.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon_crawler/proxy_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon_crawler/proxy_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="amazon_crawler" />
@@ -38,11 +49,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="525">
+              <caret line="35" column="62" lean-forward="true" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/product_xml_files/B00A8X5C84.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="2857" column="34" selection-start-line="2857" selection-start-column="13" selection-end-line="2857" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -68,6 +88,9 @@
       <find>extract_first</find>
       <find>print</find>
       <find>prin</find>
+      <find>brand</find>
+      <find>title</find>
+      <find>cerberus-data-metrics</find>
     </findStrings>
     <replaceStrings>
       <replace>sel</replace>
@@ -91,15 +114,15 @@
         <option value="$PROJECT_DIR$/amazon_crawler/middlewares.py" />
         <option value="$PROJECT_DIR$/amazon_crawler/settings.py" />
         <option value="$PROJECT_DIR$/amazon_crawler/pipelines.py" />
-        <option value="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/amazon_crawler/proxy_manager.py" />
+        <option value="$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1397" />
+    <option name="y" value="124" />
+    <option name="width" value="1284" />
     <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -192,12 +215,12 @@
       <workItem from="1555756378960" duration="1535000" />
       <workItem from="1555797587227" duration="282000" />
       <workItem from="1555916362426" duration="83000" />
-      <workItem from="1555916953898" duration="3165000" />
+      <workItem from="1555916953898" duration="11169000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11399000" />
+    <option name="totallyTimeSpent" value="19403000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -209,10 +232,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1397" height="797" extended-state="0" />
+    <frame x="0" y="124" width="1284" height="797" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49828768" visible="true" weight="0.2885609" />
-      <window_info id="Structure" order="1" sideWeight="0.5017123" side_tool="true" visible="true" weight="0.2885609" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7512605" visible="true" weight="0.18115942" />
+      <window_info id="Structure" order="1" sideWeight="0.2487395" side_tool="true" visible="true" weight="0.18115942" />
       <window_info id="Favorites" order="2" sideWeight="0.5007236" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
@@ -223,15 +247,15 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32960325" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32858595" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.50479704" side_tool="true" visible="true" weight="0.1716312" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49520296" visible="true" weight="0.1716312" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.43961352" side_tool="true" visible="true" weight="0.15602838" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.5603865" visible="true" weight="0.15602838" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3298893" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.3298893" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -336,10 +360,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/product_xml_files/B00A8X5C84.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="2857" column="34" selection-start-line="2857" selection-start-column="13" selection-end-line="2857" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="525">
+          <caret line="35" column="62" lean-forward="true" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

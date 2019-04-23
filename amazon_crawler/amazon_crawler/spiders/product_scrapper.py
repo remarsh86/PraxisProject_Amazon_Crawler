@@ -14,7 +14,7 @@ from scrapy.selector import Selector
 
 #ua = UserAgent()
 class ProductSpider(scrapy.Spider):
-    name = "product-scraper"
+    name = "product-scraper" #identifies the spider
 
     def __init__(self, *args, **kwargs):
         super(ProductSpider, self).__init__(*args, **kwargs)
@@ -24,19 +24,34 @@ class ProductSpider(scrapy.Spider):
     #start_urls = set(start_urls)
     start_urls = []
     limit = 0
-    for file in os.listdir("product_xml_files"):
+
+
+
+
+    for file in os.listdir("../product_xml_files"):
+    #for file in os.listdir("product_xml_files"):
         if limit < 100:
-            #start_urls.append("file:///Users/rebeccamarsh/Documents/Docs/A_SoSe2019/Praxis_Project_VoiceQueries/amazon_crawler/product_xml_files/" + str(file))	#replace with your local path
+            #start_urls.append("file:///Users/rebeccamarsh/Documents/PraxisProject_Amazon_Crawler/amazon_crawler/product_xml_files/" + str(file))	#replace with your local path
+
             #not sure if this relative path works....(Rebecca)
-            start_urls.append("../../product_xml_files/" + str(file))	#replace with your local path
+            #start_urls.append("/product_xml_files/" + str(file))	#replace with your local path
+            start_urls.append("file://" + os.path.realpath("../product_xml_files") + "/" + str(file))	#replace with your local path
 
         else:
             break
         limit += 1
 
+
+
+
     #products_already_scrapped = list()
     #product_scraped = list()
 
+
+    # parse() function called to handle the response downloaded for each of the Requests made (during scraping)
+    # The response parameter is an instance of TextResponse
+    # The parse() method usually parses the response, extracting the scraped data as dicts and also finding new URLs to
+    # follow and creating new requests (Request) from them.
     def parse(self, response):
         sel = Selector(text=response.body)
 
