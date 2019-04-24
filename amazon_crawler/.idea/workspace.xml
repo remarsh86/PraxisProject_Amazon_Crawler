@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93e16cd5-44fc-408a-92c6-f68bc16600b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aux.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,10 +44,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/amazon_crawler/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+            <state relative-caret-position="111">
+              <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
               <folding>
                 <element signature="e#16#45#0" expanded="true" />
+                <element signature="e#293#1552#1" />
               </folding>
             </state>
           </provider>
@@ -57,24 +57,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product_xml_files/B00A8X5C84.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="15125" column="33" selection-start-line="15125" selection-start-column="18" selection-end-line="15125" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+            <state relative-caret-position="237">
+              <caret line="14970" column="12" lean-forward="true" selection-start-line="14970" selection-start-column="12" selection-end-line="14970" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-752">
+              <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extra.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -106,9 +113,9 @@
       <find>Operating System</find>
       <find>processItem</find>
       <find>cerberus-data-metrics</find>
+      <find>Processor Brand</find>
       <find>Max Screen Resolution</find>
       <find>Processor</find>
-      <find>Processor Brand</find>
     </findStrings>
     <replaceStrings>
       <replace>sel</replace>
@@ -139,8 +146,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="83" />
+    <option name="x" value="24" />
+    <option name="y" value="23" />
     <option name="width" value="1347" />
     <option name="height" value="797" />
   </component>
@@ -187,6 +194,17 @@
               <item name="amazon_crawler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/Documents/PraxisProject_Amazon_Crawler/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="amazon_crawler" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="amazon_crawler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Documents/PraxisProject_Amazon_Crawler/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="amazon_crawler" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="spiders" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="amazon_crawler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Documents/PraxisProject_Amazon_Crawler/amazon_crawler" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="product_xml_files" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -238,12 +256,12 @@
       <workItem from="1555756378960" duration="1535000" />
       <workItem from="1555797587227" duration="282000" />
       <workItem from="1555916362426" duration="83000" />
-      <workItem from="1555916953898" duration="20520000" />
+      <workItem from="1555916953898" duration="23475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28754000" />
+    <option name="totallyTimeSpent" value="31709000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -255,7 +273,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="83" width="1347" height="797" extended-state="0" />
+    <frame x="24" y="23" width="1347" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.74939173" visible="true" weight="0.31800765" />
@@ -377,32 +395,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/amazon_crawler/pipelines.py">
+    <entry file="file://$PROJECT_DIR$/extra.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-          <folding>
-            <element signature="e#16#45#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/product_xml_files/B00A8X5C84.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="15125" column="33" selection-start-line="15125" selection-start-column="18" selection-end-line="15125" selection-end-column="33" />
+        <state relative-caret-position="237">
+          <caret line="14970" column="12" lean-forward="true" selection-start-line="14970" selection-start-column="12" selection-end-line="14970" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amazon_crawler/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+          <folding>
+            <element signature="e#16#45#0" expanded="true" />
+            <element signature="e#293#1552#1" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/amazon_crawler/spiders/product_scrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        <state relative-caret-position="-752">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extra.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
