@@ -31,8 +31,12 @@ class AmazonCrawlerPipeline(object):
             e = {"asin": item["asin"], "productTitle": item["productTitle"], "price": float(item["price"]), "displaySize": float(item['screenSize']),
                   "screenResoultionSize": (int(item['maxScreenResolution_X']), int(item['maxScreenResolution_Y'])), "processorSpeed": float(item['processorSpeed']),
                   "processorType": item['processorType'], "processorCount": float(item['processorCount']), "brand": item['processorBrand'],
-                  "ram": item['ram'], "hardDrive": item['hardDrive']}
-            res = es.index(index='testxy', doc_type='xy', body=e)
+                  "ram": item['ram'], "hardDrive": item['hardDrive'], "graphicsCoprocessor": item['graphicsCoprocessor'],
+                 "chipsetBrand": item['chipsetBrand'], "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
+                 "memoryType": item['memoryType'], "averageBatteryLife": item['averageBatteryLife'],
+                 "productDimension": (int(item['productDimension_X']), int(item['productDimension_Y']), int(item['productDimension_Z']) ),
+                 "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
+            res = es.index(index='amazon', doc_type='xy', body=e)
             print(res)
         except Exception as e:
             #self.conn.rollback()
