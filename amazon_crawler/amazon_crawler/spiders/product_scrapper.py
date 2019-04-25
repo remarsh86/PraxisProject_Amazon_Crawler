@@ -1,5 +1,5 @@
 import scrapy
-from amazon_crawler.items import AmazonScrapItem
+from ....amazon_crawler.items import AmazonScrapItem
 from scrapy import signals
 from urllib import request
 import re
