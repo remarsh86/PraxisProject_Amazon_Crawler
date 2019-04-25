@@ -1,10 +1,10 @@
 import scrapy
-from ....amazon_crawler.items import AmazonScrapItem
+from amazon_crawler.amazon_crawler.items import AmazonScrapItem
 from scrapy import signals
 from urllib import request
 import re
 import os
-from amazon_crawler import proxy_manager as pm
+from amazon_crawler.amazon_crawler import proxy_manager as pm
 from fake_useragent import UserAgent
 from scrapy.crawler import CrawlerProcess
 from multiprocessing import Process, Queue
