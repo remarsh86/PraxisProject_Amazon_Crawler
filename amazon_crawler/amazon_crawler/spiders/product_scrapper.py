@@ -41,9 +41,8 @@ class ProductSpider(scrapy.Spider):
         #     break
         # limit += 1
         #Relative Path for all to use:
-        start_urls.append("file://" + os.path.realpath("../product_xml_files") + "/" + str(file))	#replace with your local path
-
-
+        start_urls.append("file://" + os.path.realpath("../product_xml_files") + "/" + str(file))	#replace with your local path 
+        
 
 
 
@@ -69,7 +68,10 @@ class ProductSpider(scrapy.Spider):
         #    print("Product with ASIN {} is already crawled!".format(product["asin"]))
 
         product["productTitle"] = self.getProductTitle(sel)
-        product["price"] = self.getPrice(sel)
+        if (self.getPrice(sel) == ''):
+            product["price"] = 0
+        else:
+            product["price"] = self.getPrice(sel)
         product["brandName"] = self.getBrandName(sel)
         product["screenSize"] = self.getScreenSize(sel)
         product["maxScreenResolution_X"] = self.getMaxScreenResolution_X(sel)
@@ -79,7 +81,10 @@ class ProductSpider(scrapy.Spider):
         product["processorBrand"] = self.getProcessorBrand(sel)
         product["processorCount"] = self.getProcessorCount(sel)
         product["ram"] = self.getRAM(sel)
-        product["hardDrive"] = self.getHardDrive(sel)
+        if self.getHardDrive(sel):
+            product["hardDrive"] = self.getHardDrive(sel)
+        else:
+            product["hardDrive"] = None
         product["graphicsCoprocessor"] = self.getGraphicsCoprocessor(sel)
         product["chipsetBrand"] = self.getChipsetBrand(sel)
         product["operatingSystem"] = self.getOperatingSystem(sel)
@@ -161,7 +166,9 @@ class ProductSpider(scrapy.Spider):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Brand Name":
                     brandName = tr.xpath('.//td/text()').get().strip()
-                    return brandName
+                elif tr.xpath('.//th/text()').get().strip() == "Manufacturer" :
+                    brandName = tr.xpath('.//td/text()').get().strip()
+                return brandName
             except:
                 pass
 
@@ -283,7 +290,9 @@ class ProductSpider(scrapy.Spider):
                         hd = int(hd[:hd.find('GB')-1].strip())
                     elif 'TB' in hd:
                         hd = int(hd[:hd.find('TB')-1].strip())*1000
-                    return hd                                                   # GB
+                    else: 
+                        return None
+                    return hd                                              # GB
             except:
                 pass
 

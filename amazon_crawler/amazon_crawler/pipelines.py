@@ -28,13 +28,13 @@ class AmazonCrawlerPipeline(object):
             #self.cur.execute(sql, vals)
             #self.conn.commit()
             #print("Inserted into Test Database!")
-            e = {"asin": item["asin"], "productTitle": item["productTitle"], "price": float(item["price"]), "displaySize": float(item['screenSize']),
-                  "screenResoultionSize": (int(item['maxScreenResolution_X']), int(item['maxScreenResolution_Y'])), "processorSpeed": float(item['processorSpeed']),
-                  "processorType": item['processorType'], "processorCount": float(item['processorCount']), "brand": item['processorBrand'],
+            e = {"asin": item["asin"], "productTitle": item["productTitle"],"brandName" : item["brandName"] ,"price": item["price"], "displaySize": item['screenSize'],
+                  "screenResoultionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']), "processorSpeed": item['processorSpeed'],
+                  "processorType": item['processorType'], "processorCount": item['processorCount'], "brand": item['processorBrand'],
                   "ram": item['ram'], "hardDrive": item['hardDrive'], "graphicsCoprocessor": item['graphicsCoprocessor'],
                  "chipsetBrand": item['chipsetBrand'], "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
                  "memoryType": item['memoryType'], "averageBatteryLife": item['averageBatteryLife'],
-                 "productDimension": (int(item['productDimension_X']), int(item['productDimension_Y']), int(item['productDimension_Z']) ),
+                 "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']),
                  "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
             res = es.index(index='amazon', doc_type='xy', body=e)
             print(res)
