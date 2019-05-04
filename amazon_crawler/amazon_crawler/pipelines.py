@@ -9,38 +9,35 @@ class AmazonCrawlerPipeline(object):
     # conn = None
     # cur = None
 
+
     def process_item(self, item, spider):
         # save product
-        '''
-        sql = "insert into test_products (asin, productTitle, price, brandName, screenSize, maxScreenResolution_X, maxScreenResolution_Y," \
-              "processorSpeed, processorType, processorBrand, processorCount, ram, hardDrive, graphicsCoprocessor, chipsetBrand," \
-              "operatingSystem, itemWeight, memoryType, averageBatteryLife, productDimension_X, productDimension_Y, productDimension_Z," \
-              "color, imagePath, avgRating) " \
-              "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s," \
-              "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        vals = (item["asin"], item["productTitle"], item["price"], item['brandName'],  item['screenSize'], item['maxScreenResolution_X'], item['maxScreenResolution_Y'],
-               item['processorSpeed'], item['processorType'], item['processorBrand'], item['processorCount'], item['ram'], item['hardDrive'],
-               item['graphicsCoprocessor'], item['chipsetBrand'], item['operatingSystem'], item['itemWeight'], item['memoryType'], item['averageBatteryLife'],
-               item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z'], item['color'], item['imagePath'], item['avgRating'])
-        #print(sql)
-        '''
+
         try:
             #self.cur.execute(sql, vals)
             #self.conn.commit()
             #print("Inserted into Test Database!")
-            e = {"asin": item["asin"], "productTitle": item["productTitle"], "price": float(item["price"]), "displaySize": float(item['screenSize']),
-                  "screenResoultionSize": (int(item['maxScreenResolution_X']), int(item['maxScreenResolution_Y'])), "processorSpeed": float(item['processorSpeed']),
-                  "processorType": item['processorType'], "processorCount": float(item['processorCount']), "brand": item['processorBrand'],
-                  "ram": item['ram'], "hardDrive": item['hardDrive'], "graphicsCoprocessor": item['graphicsCoprocessor'],
+            e = {"asin": item["asin"], "productTitle": item["productTitle"], "price": item["price"], "displaySize": item['screenSize'],
+                  "screenResoultionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']), "processorSpeed": item['processorSpeed'],
+                  "processorType": item['processorType'], "processorCount": item['processorCount'], "processorBrand": item['processorBrand'],
+                  "ram": item['ram'],"brandName": item['brandName'], "hardDriveType": item['hardDriveType'],"hardDriveSize": item['hardDriveSize'], "graphicsCoprocessor": item['graphicsCoprocessor'],
                  "chipsetBrand": item['chipsetBrand'], "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
                  "memoryType": item['memoryType'], "averageBatteryLife": item['averageBatteryLife'],
-                 "productDimension": (int(item['productDimension_X']), int(item['productDimension_Y']), int(item['productDimension_Z']) ),
+                 "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']) ,
                  "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
-            res = es.index(index='amazon', doc_type='xy', body=e)
+            res = es.index(index='amazon', doc_type='laptop', body=e)
             print(res)
         except Exception as e:
             #self.conn.rollback()
-            print(repr(e))
+            print(e)
+            print(item)
+
+            #for key in item :
+            #    if item[key] is None:
+            #        print(key,"is None in ",item["asin"])
+            #if item["asin"] == "B07D6TSMC9" :
+            #    print(e["price"])
+
 
         # saving reviews
         #reviews = item["reviews"]
