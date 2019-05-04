@@ -28,49 +28,9 @@ class AmazonCrawlerPipeline(object):
             res = es.index(index='amazon', doc_type='laptop', body=e)
             print(res)
         except Exception as e:
-            #self.conn.rollback()
+            f = open("error","a+")
+            f.write(e)
             print(e)
-            print(item)
-
-            #for key in item :
-            #    if item[key] is None:
-            #        print(key,"is None in ",item["asin"])
-            #if item["asin"] == "B07D6TSMC9" :
-            #    print(e["price"])
-
-
-        # saving reviews
-        #reviews = item["reviews"]
-
-        '''
-        for review in reviews:
-            review_date = review["review_date"]
-            review_date = self.convert_date(review_date)
-            sql = "insert into reviews (review_id, product_id, subject, user_rating, review_text, review_date) " \
-                  "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" % \
-                  (review["review_id"], item["product_id"], review["subject"], review["user_rating"],
-                   review["review_text"], review_date)
-            try:
-                self.cur.execute(sql)
-                self.conn.commit()
-            except Exception as e:
-                self.conn.rollback()
-                print(repr(e))
-                print(item["book_id"])
-        '''
-
-    # def open_spider(self, spider):
-    #     self.conn = pymysql.connect(host="localhost",  # your host
-    #                          user="alfred",  # username
-    #                          passwd="mysqlmysql",  # password
-    #                          db="test_db")  # name of the database
-    #
-    #     # Create a Cursor object to execute queries.
-    #     self.cur = self.conn.cursor()
-
-    # def close_spider(self, spider):
-    #     self.cur.close()
-    #     self.conn.close()
 
     @classmethod
     def from_crawler(cls, crawler):
