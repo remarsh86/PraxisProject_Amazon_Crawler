@@ -28,8 +28,8 @@ class AmazonCrawlerPipeline(object):
             res = es.index(index='amazon', doc_type='laptop', body=e)
             #print(res)
         except Exception as e:
-            f = open("error.txt", "w")
-            f.write(repr(e))
+            f = open("error.txt", "a+")
+            f.write("asin : ",item["asin"],'\n',repr(e),"\n")
             print(repr(e))
 
 

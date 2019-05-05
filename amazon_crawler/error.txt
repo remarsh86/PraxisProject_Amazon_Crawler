@@ -1,1 +1,1 @@
-NameError("name 'res' is not defined")
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [hardDriveSize] of type [long] in document with id 'SJgKiWoBh8OGoiglD8F_'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [hardDriveSize] of type [long] in document with id 'SJgKiWoBh8OGoiglD8F_'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})

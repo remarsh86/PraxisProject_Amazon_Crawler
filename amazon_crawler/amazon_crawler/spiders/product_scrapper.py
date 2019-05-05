@@ -175,12 +175,19 @@ class ProductSpider(scrapy.Spider):
             for processor in processors :
                 if processor in processorType.lower() :
                     return processor.title()
+        if
 
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor Brand":
                     processorBrand = tr.xpath('.//td/text()').get().strip()
-                    return processorBrand
+                    for processor in processors :
+                        if processor in processorBrand.lower() :
+                            return processor.title()
+                    if "radeon"  in processorBrand.lower() or "ryzen"  in processorBrand.lower() :
+                        return "Amd"
+
+                    return processorBrand.title()
             except:
                 pass
 
@@ -262,7 +269,7 @@ class ProductSpider(scrapy.Spider):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
                     os = tr.xpath('.//td/text()').get().strip()
-                    return os
+                    return os.title()
             except:
                 pass
 
@@ -276,7 +283,7 @@ class ProductSpider(scrapy.Spider):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Graphics Coprocessor":
                     gc = tr.xpath('.//td/text()').get().strip()
-                    return gc
+                    return gc.title()
             except:
                 pass
 
@@ -285,7 +292,7 @@ class ProductSpider(scrapy.Spider):
             try:
                 if p.xpath('.//text()').get().strip() == "Graphics:":
                     gc = p.xpath(".//following-sibling::text()[1]").get().strip()
-                    return gc
+                    return gc.title()
             except:
                 pass
 
@@ -293,7 +300,7 @@ class ProductSpider(scrapy.Spider):
         for br in sel.xpath('//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
             try:
                 if 'graphics' in br.get().lower():
-                    return br.get().strip()
+                    return br.get().strip().title()
             except:
                 pass
         return None
@@ -307,11 +314,10 @@ class ProductSpider(scrapy.Spider):
                 #     cb = tr.xpath('.//td/text()').get().strip()
                 for brand in brands:
                     if brand in gpu.lower():
-                        return brand
+                        return brand.title()
             except:
                 pass
-
-        return None
+        return gpu.title()
 
 #    <span class="a-size-base a-color-base">Screen Size</span>
 
@@ -331,7 +337,7 @@ class ProductSpider(scrapy.Spider):
                 if brand == "XPS":
                     return "Dell"
                 else :
-                    return brand
+                    return brand.title()
 
         for tr in sel.xpath('//tr'):
             try:
