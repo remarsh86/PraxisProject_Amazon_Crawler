@@ -27,7 +27,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         if limit < 100:
+         if limit < 7000:
 
              start_urls.append(
                  "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -35,7 +35,7 @@ class ProductSpider(scrapy.Spider):
          else:
              break
          limit += 1
-    #start_urls.append("file://" + os.path.realpath("product_xml_files") + "/B07HRPPBQH.xml")  # replace with your local path
+    #start_urls.append("file://" + os.path.realpath("product_xml_files") + "/B075TG56TT.xml")  # replace with your local path
          #Generates a dictionary and yields it after parsing as
     def parse(self, response):
         sel = Selector(text=response.body)
@@ -61,7 +61,7 @@ class ProductSpider(scrapy.Spider):
         product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'])
 
 
-        product["brandName"] = self.getBrandName(sel)
+        product["brandName"] = self.getBrandName(sel, product['productTitle'])
 
         product["price"] = self.getPrice(sel)
 
@@ -91,7 +91,7 @@ class ProductSpider(scrapy.Spider):
         product["imagePath"] = self.downloadImage(sel)
         product["avgRating"] = self.getAvgRating(sel)
 
-        print("Product", product)
+        #print("Product", product)
         yield product
 
     @staticmethod
@@ -270,6 +270,8 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getGraphicsCoprocessor(sel):
+        brands = ['intel', 'amd', 'nvidia']
+        #search first for the gpu in the specification table
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Graphics Coprocessor":
@@ -277,11 +279,21 @@ class ProductSpider(scrapy.Spider):
                     return gc
             except:
                 pass
+
+        #search then in the pruduct description
         for p in sel.xpath('//div[@id="productDescription"]/p/b'):
             try:
                 if p.xpath('.//text()').get().strip() == "Graphics:":
                     gc = p.xpath(".//following-sibling::text()[1]").get().strip()
                     return gc
+            except:
+                pass
+
+        #keep searching the descriptipn box
+        for br in sel.xpath('//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
+            try:
+                if 'graphics' in br.get().lower():
+                    return br.get().strip()
             except:
                 pass
         return None
@@ -306,12 +318,21 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getPrice(sel):
         price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get().replace('$','')
-        if price is None:
-            return 0
+        if price is not None:
+            return price.replace(',', '')
         return price
 
     @staticmethod
-    def getBrandName(sel):
+    def getBrandName(sel, title):
+        brands =["Dell", "HP", "Lenovo", "Acer", "Asus", "Apple", "Samsung", "MSI", "Alienware", "Razer", "Huawai", "LG",
+                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan"]
+        for brand in brands:
+            if brand.lower() in title.lower():
+                if brand == "XPS":
+                    return "Dell"
+                else :
+                    return brand
+
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Brand Name":
