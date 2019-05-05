@@ -27,7 +27,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         if limit < 7000:
+         if limit < 100:
 
              start_urls.append(
                  "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -35,6 +35,7 @@ class ProductSpider(scrapy.Spider):
          else:
              break
          limit += 1
+    #start_urls.append("file://" + os.path.realpath("product_xml_files") + "/B07HRPPBQH.xml")  # replace with your local path
          #Generates a dictionary and yields it after parsing as
     def parse(self, response):
         sel = Selector(text=response.body)
@@ -57,7 +58,7 @@ class ProductSpider(scrapy.Spider):
         product["operatingSystem"] = self.getOperatingSystem(sel)
 
         product["graphicsCoprocessor"] = self.getGraphicsCoprocessor(sel)
-        product["chipsetBrand"] = self.getChipsetBrand(sel)
+        product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'])
 
 
         product["brandName"] = self.getBrandName(sel)
@@ -90,7 +91,7 @@ class ProductSpider(scrapy.Spider):
         product["imagePath"] = self.downloadImage(sel)
         product["avgRating"] = self.getAvgRating(sel)
 
-        #print("Product", product)
+        print("Product", product)
         yield product
 
     @staticmethod
@@ -276,16 +277,25 @@ class ProductSpider(scrapy.Spider):
                     return gc
             except:
                 pass
-
+        for p in sel.xpath('//div[@id="productDescription"]/p/b'):
+            try:
+                if p.xpath('.//text()').get().strip() == "Graphics:":
+                    gc = p.xpath(".//following-sibling::text()[1]").get().strip()
+                    return gc
+            except:
+                pass
         return None
 
     @staticmethod
-    def getChipsetBrand(sel):
+    def getChipsetBrand(sel, gpu):
+        brands = ['intel' , 'amd' , 'nvidia']
         for tr in sel.xpath('//tr'):
             try:
-                if tr.xpath('.//th/text()').get().strip() == "Chipset Brand":
-                    cb = tr.xpath('.//td/text()').get().strip()
-                    return cb
+                # if tr.xpath('.//th/text()').get().strip() == "Chipset Brand":
+                #     cb = tr.xpath('.//td/text()').get().strip()
+                for brand in brands:
+                    if brand in gpu.lower():
+                        return brand
             except:
                 pass
 

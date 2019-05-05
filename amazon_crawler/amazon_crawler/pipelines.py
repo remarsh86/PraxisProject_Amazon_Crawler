@@ -28,9 +28,12 @@ class AmazonCrawlerPipeline(object):
             res = es.index(index='amazon', doc_type='laptop', body=e)
             print(res)
         except Exception as e:
-            f = open("error","a+")
-            f.write(e)
-            print(e)
+            # f = open("error.txt", "w")
+            # f.write(e)
+            print(repr(e))
+            print('somthing went wrong')
+            print(item['asin'])
+
 
     @classmethod
     def from_crawler(cls, crawler):
