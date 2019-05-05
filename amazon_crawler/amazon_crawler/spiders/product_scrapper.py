@@ -264,7 +264,7 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getOperatingSystem(sel):
-        operatingSystems = ["windows 10","windows 8.1","windows 8","windows 7","linux","mac os","windows vista","windows xp","dos","chrome","android"]
+        operatingSystems = ["windows 10","windows 8.1","windows 8","windows 7","linux","mac os","windows vista","windows xp","dos","chrome","android","windows"]
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
