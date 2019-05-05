@@ -10,6 +10,7 @@ from scrapy.crawler import CrawlerProcess
 from multiprocessing import Process, Queue
 from twisted.internet import reactor
 from scrapy.selector import Selector
+from colour import Color
 
 
 #ua = UserAgent()
@@ -27,7 +28,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         if limit < 7000:
+         if limit < 1000:
 
              start_urls.append(
                  "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -330,9 +331,9 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getPrice(sel):
-        price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get()
+        price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get().replace('$','')
         if price is not None:
-            return price.replace(',', '').replace('$','')
+            return price.replace(',', '')
         return price
 
     @staticmethod
@@ -447,7 +448,10 @@ class ProductSpider(scrapy.Spider):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Color":
                     color = tr.xpath('.//td/text()').get().strip()
-                    return color
+                    if color == "Gray":
+                        color = "Grey"
+                    Color(color.replace(" ", ""))
+                    return color.title()
             except:
                 pass
 
