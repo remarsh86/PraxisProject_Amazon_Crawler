@@ -175,7 +175,6 @@ class ProductSpider(scrapy.Spider):
             for processor in processors :
                 if processor in processorType.lower() :
                     return processor.title()
-        if
 
         for tr in sel.xpath('//tr'):
             try:
@@ -265,10 +264,16 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getOperatingSystem(sel):
+        operatingSystems = ["windows 10","windows 8.1","windows 8","windows 7","linux","mac os","windows vista","windows xp","dos","chrome","android"]
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
                     os = tr.xpath('.//td/text()').get().strip()
+                    for operatingSystem in operatingSystems:
+                        if operatingSystem.lower().strip() in os.lower().strip():
+                            return operatingSystem.title()
+                        if "mac" in os.lower().strip() :
+                            return "Mac Os"
                     return os.title()
             except:
                 pass
@@ -317,15 +322,17 @@ class ProductSpider(scrapy.Spider):
                         return brand.title()
             except:
                 pass
-        return gpu.title()
+        if gpu is not None :
+            return gpu.title()
+        return None
 
 #    <span class="a-size-base a-color-base">Screen Size</span>
 
     @staticmethod
     def getPrice(sel):
-        price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get().replace('$','')
+        price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get()
         if price is not None:
-            return price.replace(',', '')
+            return price.replace(',', '').replace('$','')
         return price
 
     @staticmethod
