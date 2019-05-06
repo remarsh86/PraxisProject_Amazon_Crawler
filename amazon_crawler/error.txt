@@ -1,1 +1,858 @@
-RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [hardDriveSize] of type [long] in document with id 'SJgKiWoBh8OGoiglD8F_'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [hardDriveSize] of type [long] in document with id 'SJgKiWoBh8OGoiglD8F_'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [hardDriveSize] of type [long] in document with id 'SJgKiWoBh8OGoiglD8F_'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [hardDriveSize] of type [long] in document with id 'SJgKiWoBh8OGoiglD8F_'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})asin : B07GYKG75V
+KeyError('hardDriveSize')
+asin : B07JQFRG82
+KeyError('hardDriveSize')
+asin : B0795W86N4
+KeyError('hardDriveSize')
+asin : B07CN8GVD7
+KeyError('hardDriveSize')
+asin : B008ASDYGG
+KeyError('hardDriveSize')
+asin : B00E7LJJFU
+KeyError('hardDriveSize')
+asin : B01D7NL8WU
+KeyError('hardDriveSize')
+asin : B07H7RNXXW
+KeyError('hardDriveSize')
+asin : B072C68CCH
+KeyError('hardDriveSize')
+asin : B07K1ZJYKF
+KeyError('hardDriveSize')
+asin : B06W58Z53X
+KeyError('hardDriveSize')
+asin : B077468KN3
+KeyError('hardDriveSize')
+asin : B0044UAPZ2
+KeyError('hardDriveSize')
+asin : B01LXP2XW8
+KeyError('hardDriveSize')
+asin : B07GBW9PL8
+KeyError('hardDriveSize')
+asin : B07L86BQCV
+KeyError('hardDriveSize')
+asin : B014N4Q264
+KeyError('hardDriveSize')
+asin : B07F7MPV25
+KeyError('hardDriveSize')
+asin : B06XGZ622V
+KeyError('hardDriveSize')
+asin : B01DZ4NIRO
+KeyError('hardDriveSize')
+asin : B074MJRR36
+KeyError('hardDriveSize')
+asin : B076N6K19D
+KeyError('hardDriveSize')
+asin : B06WD61CF5
+KeyError('hardDriveSize')
+asin : B00MTVCL5U
+KeyError('hardDriveSize')
+asin : B07J1PPFY7
+KeyError('hardDriveSize')
+asin : B07D6TSMC9
+KeyError('hardDriveSize')
+asin : B06ZYZ79TR
+KeyError('hardDriveSize')
+asin : B07FYCXD6D
+KeyError('hardDriveSize')
+asin : B07HRJ33B2
+KeyError('hardDriveSize')
+asin : B017QKJ6OC
+KeyError('hardDriveSize')
+asin : B079K7XMQN
+KeyError('hardDriveSize')
+asin : B07BW1LQQZ
+KeyError('hardDriveSize')
+asin : B07BS4GQJV
+KeyError('hardDriveSize')
+asin : B07L6J88T3
+KeyError('hardDriveSize')
+asin : B07CN7THC7
+KeyError('hardDriveSize')
+asin : B07KFGZ2BC
+KeyError('hardDriveSize')
+asin : B079T21QRF
+KeyError('hardDriveSize')
+asin : B01MEH3JZK
+KeyError('hardDriveSize')
+asin : B07K1GR9LN
+KeyError('hardDriveSize')
+asin : B07LB79BBN
+KeyError('hardDriveSize')
+asin : B0160N59W4
+KeyError('hardDriveSize')
+asin : B07KSXKCH9
+KeyError('hardDriveSize')
+asin : B00XNW83QU
+KeyError('hardDriveSize')
+asin : B0797CL21N
+KeyError('hardDriveSize')
+asin : B07MR4Q53G
+KeyError('hardDriveSize')
+asin : B07FKS27RN
+KeyError('hardDriveSize')
+asin : B06XT6VFZR
+KeyError('hardDriveSize')
+asin : B07BS1CPBR
+KeyError('hardDriveSize')
+asin : B06X1D4167
+KeyError('hardDriveSize')
+asin : B01MRBK2IH
+KeyError('hardDriveSize')
+asin : B07KY8QV1D
+KeyError('hardDriveSize')
+asin : B01MQRZFY0
+KeyError('hardDriveSize')
+asin : B003STSTV2
+KeyError('hardDriveSize')
+asin : B07G65DGXS
+KeyError('hardDriveSize')
+asin : B01MXOQX42
+KeyError('hardDriveSize')
+asin : B07DSZX8K1
+KeyError('hardDriveSize')
+asin : B07GJCZPG8
+KeyError('hardDriveSize')
+asin : B01GGM6NEW
+KeyError('hardDriveSize')
+asin : B07G4CR66P
+KeyError('hardDriveSize')
+asin : B079L4M9PV
+KeyError('hardDriveSize')
+asin : B079VVLK3D
+KeyError('hardDriveSize')
+asin : B077H51BP3
+KeyError('hardDriveSize')
+asin : B07BMJBGCJ
+KeyError('hardDriveSize')
+asin : B07HBVK5ZN
+KeyError('hardDriveSize')
+asin : B07DK8VHVR
+KeyError('hardDriveSize')
+asin : B07FY686D9
+KeyError('hardDriveSize')
+asin : B07F1YZH31
+KeyError('hardDriveSize')
+asin : B071434T9D
+KeyError('hardDriveSize')
+asin : B079YXF8F4
+KeyError('hardDriveSize')
+asin : B07GDSBJTN
+KeyError('hardDriveSize')
+asin : B07FNF3GXX
+KeyError('hardDriveSize')
+asin : B018550LSW
+KeyError('hardDriveSize')
+asin : B076BBP38M
+KeyError('hardDriveSize')
+asin : B07GCQVM8S
+KeyError('hardDriveSize')
+asin : B0779L3G3G
+KeyError('hardDriveSize')
+asin : B0721H66ZS
+KeyError('hardDriveSize')
+asin : B07JB2LFGR
+KeyError('hardDriveSize')
+asin : B076ZB6F4D
+KeyError('hardDriveSize')
+asin : B071Y5TP33
+KeyError('hardDriveSize')
+asin : B00KVLX0GE
+KeyError('hardDriveSize')
+asin : B01MQ3IAJQ
+KeyError('hardDriveSize')
+asin : B07C6DF663
+KeyError('hardDriveSize')
+asin : B0722X62V6
+KeyError('hardDriveSize')
+asin : B00AAXXSUQ
+KeyError('hardDriveSize')
+asin : B07CPSPP9R
+KeyError('hardDriveSize')
+asin : B07JPHTZMT
+KeyError('hardDriveSize')
+asin : B010DODBKS
+KeyError('hardDriveSize')
+asin : B07L838WSM
+KeyError('hardDriveSize')
+asin : B01LEXOU98
+KeyError('hardDriveSize')
+asin : B073V6BGS4
+KeyError('hardDriveSize')
+asin : B01AGRWBF8
+KeyError('hardDriveSize')
+asin : B016CUN2Y2
+KeyError('hardDriveSize')
+asin : B079L2PY2F
+KeyError('hardDriveSize')
+asin : B0167XQRSW
+KeyError('hardDriveSize')
+asin : B07F3BZF57
+KeyError('hardDriveSize')
+asin : B07L8LMNKQ
+KeyError('hardDriveSize')
+asin : B079SWYZ3T
+KeyError('hardDriveSize')
+asin : B07JM64CC1
+KeyError('hardDriveSize')
+asin : B079VQQ3TS
+KeyError('hardDriveSize')
+asin : B07GCS44FJ
+KeyError('hardDriveSize')
+asin : B07BVQJV25
+KeyError('hardDriveSize')
+asin : B00D9KP70G
+KeyError('hardDriveSize')
+asin : B01AJPYVQE
+KeyError('hardDriveSize')
+asin : B01N758MKT
+KeyError('hardDriveSize')
+asin : B07FN88JQY
+KeyError('hardDriveSize')
+asin : B07C2B8DGF
+KeyError('hardDriveSize')
+asin : B07G489BCQ
+KeyError('hardDriveSize')
+asin : B07GGWZMXX
+KeyError('hardDriveSize')
+asin : B07D4F5RYB
+KeyError('hardDriveSize')
+asin : B078YMN5NT
+KeyError('hardDriveSize')
+asin : B01MRA8EZZ
+KeyError('hardDriveSize')
+asin : B07GCT3RBW
+KeyError('hardDriveSize')
+asin : B07BJZFRJD
+KeyError('hardDriveSize')
+asin : B07JN7222R
+KeyError('hardDriveSize')
+asin : B07BNDQ9QT
+KeyError('hardDriveSize')
+asin : B07MBB1L61
+KeyError('hardDriveSize')
+asin : B07HPSR3Z9
+KeyError('hardDriveSize')
+asin : B00XLR8V1Y
+KeyError('hardDriveSize')
+asin : B07D7DMZQL
+KeyError('hardDriveSize')
+asin : B01B1H9678
+KeyError('hardDriveSize')
+asin : B0798Y4N8P
+KeyError('hardDriveSize')
+asin : B07FWHCTCC
+KeyError('hardDriveSize')
+asin : B07KPKM6XX
+KeyError('hardDriveSize')
+asin : B002PK1570
+KeyError('hardDriveSize')
+asin : B01KAP7RJG
+KeyError('hardDriveSize')
+asin : B010C93X5M
+KeyError('hardDriveSize')
+asin : B01H8C6JPW
+KeyError('hardDriveSize')
+asin : B07HF4HSSR
+KeyError('hardDriveSize')
+asin : B07JM3ZK7G
+KeyError('hardDriveSize')
+asin : B079P88GCG
+KeyError('hardDriveSize')
+asin : B078JB4WRL
+KeyError('hardDriveSize')
+asin : B07CQFV59G
+KeyError('hardDriveSize')
+asin : B00CRGJID0
+KeyError('hardDriveSize')
+asin : B078R1BWGY
+KeyError('hardDriveSize')
+asin : B00DU1CTQ4
+KeyError('hardDriveSize')
+asin : B07698WSW9
+KeyError('hardDriveSize')
+asin : B07DX9592Z
+KeyError('hardDriveSize')
+asin : B07DQGZ4CV
+KeyError('hardDriveSize')
+asin : B07GCRJQXD
+KeyError('hardDriveSize')
+asin : B07BKQX2GS
+KeyError('hardDriveSize')
+asin : B01N0KT81H
+KeyError('hardDriveSize')
+asin : B014X4UW6K
+KeyError('hardDriveSize')
+asin : B0787KGBBX
+KeyError('hardDriveSize')
+asin : B07FWCC422
+KeyError('hardDriveSize')
+asin : B07MVKKJY9
+KeyError('hardDriveSize')
+asin : B00VQSI8FO
+KeyError('hardDriveSize')
+asin : B078PJWRJB
+KeyError('hardDriveSize')
+asin : B07D8DQTGN
+KeyError('hardDriveSize')
+asin : B07K9PZVHR
+KeyError('hardDriveSize')
+asin : B07DN3FPKK
+KeyError('hardDriveSize')
+asin : B07CJ55TKK
+KeyError('hardDriveSize')
+asin : B00MXO4V5G
+KeyError('hardDriveSize')
+asin : B071WSYW8M
+KeyError('hardDriveSize')
+asin : B01D5719CW
+KeyError('hardDriveSize')
+asin : B079HF98NM
+KeyError('hardDriveSize')
+asin : B01CGXY6SK
+KeyError('hardDriveSize')
+asin : B07D7H1HFC
+KeyError('hardDriveSize')
+asin : B07GBYK4TG
+KeyError('hardDriveSize')
+asin : B07K7VVMKJ
+KeyError('hardDriveSize')
+asin : B07KVLG837
+KeyError('hardDriveSize')
+asin : B00FE5ZUA6
+KeyError('hardDriveSize')
+asin : B06Y194SDZ
+KeyError('hardDriveSize')
+asin : B001EHAWVU
+KeyError('hardDriveSize')
+asin : B077DRRG19
+KeyError('hardDriveSize')
+asin : B07B1QZ5HK
+KeyError('hardDriveSize')
+asin : B07C35VR1R
+KeyError('hardDriveSize')
+asin : B075JRY93Y
+KeyError('hardDriveSize')
+asin : B00KE7Z4C8
+KeyError('hardDriveSize')
+asin : B07HCRTSTJ
+KeyError('hardDriveSize')
+asin : B07LBT52F8
+KeyError('hardDriveSize')
+asin : B078YD9V3X
+KeyError('hardDriveSize')
+asin : B01IHAHGI8
+KeyError('hardDriveSize')
+asin : B01KKSCA7C
+KeyError('hardDriveSize')
+asin : B076DC4KV5
+KeyError('hardDriveSize')
+asin : B07HGV6PZZ
+KeyError('hardDriveSize')
+asin : B01N4IF422
+KeyError('hardDriveSize')
+asin : B0776J6KZN
+KeyError('hardDriveSize')
+asin : B01LWPJTL7
+KeyError('hardDriveSize')
+asin : B07H5HWKQB
+KeyError('hardDriveSize')
+asin : B0793J9P98
+KeyError('hardDriveSize')
+asin : B01M01EFM9
+KeyError('hardDriveSize')
+asin : B07G36XGPM
+KeyError('hardDriveSize')
+asin : B07MDN3HYK
+KeyError('hardDriveSize')
+asin : B07F7JDBL2
+KeyError('hardDriveSize')
+asin : B07H13R9MX
+KeyError('hardDriveSize')
+asin : B07KYSCXM5
+KeyError('hardDriveSize')
+asin : B071K3LKZW
+KeyError('hardDriveSize')
+asin : B079TGQKVX
+KeyError('hardDriveSize')
+asin : B07GCRG8RP
+KeyError('hardDriveSize')
+asin : B07JYM9NNQ
+KeyError('hardDriveSize')
+asin : B00DL499Y0
+KeyError('hardDriveSize')
+asin : B01HAQHE3M
+KeyError('hardDriveSize')
+asin : B07KKKC1D5
+KeyError('hardDriveSize')
+asin : B07KFS5WYS
+KeyError('hardDriveSize')
+asin : B00AWGELXY
+KeyError('hardDriveSize')
+asin : B01A1H3832
+KeyError('hardDriveSize')
+asin : B06W5J5NX4
+KeyError('hardDriveSize')
+asin : B01MRGZK7R
+KeyError('hardDriveSize')
+asin : B079TZCNLS
+KeyError('hardDriveSize')
+asin : B073GJTG3K
+KeyError('hardDriveSize')
+asin : B07BNG6CKV
+KeyError('hardDriveSize')
+asin : B07G6LD3X6
+KeyError('hardDriveSize')
+asin : B07LDZ1Z2Z
+KeyError('hardDriveSize')
+asin : B00PJ8W54C
+KeyError('hardDriveSize')
+asin : B07C89P341
+KeyError('hardDriveSize')
+asin : B0784J8FXM
+KeyError('hardDriveSize')
+asin : B07HHCGJSY
+KeyError('hardDriveSize')
+asin : B07C9SYR5R
+KeyError('hardDriveSize')
+asin : B07GDGPRCQ
+KeyError('hardDriveSize')
+asin : B00VQR7MVQ
+KeyError('hardDriveSize')
+asin : B075JQ2MPN
+KeyError('hardDriveSize')
+asin : B07FFD39LB
+KeyError('hardDriveSize')
+asin : B076HV3NJN
+KeyError('hardDriveSize')
+asin : B00K1FY3M0
+KeyError('hardDriveSize')
+asin : B07M79DPDT
+KeyError('hardDriveSize')
+asin : B0161ZDP5E
+KeyError('hardDriveSize')
+asin : B01NCOSCY7
+KeyError('hardDriveSize')
+asin : B01G4WURW8
+KeyError('hardDriveSize')
+asin : B076V3FM6L
+KeyError('hardDriveSize')
+asin : B0194FQZY6
+KeyError('hardDriveSize')
+asin : B07BMYJ269
+KeyError('hardDriveSize')
+asin : B01A9JSD7S
+KeyError('hardDriveSize')
+asin : B07L9G27P3
+KeyError('hardDriveSize')
+asin : B07KDZ62YT
+KeyError('hardDriveSize')
+asin : B07CS1JLVL
+KeyError('hardDriveSize')
+asin : B01N1WUVDR
+KeyError('hardDriveSize')
+asin : B072KLQVM8
+KeyError('hardDriveSize')
+asin : B01M11NU08
+KeyError('hardDriveSize')
+asin : B015P3SHWO
+KeyError('hardDriveSize')
+asin : B07F35YL1J
+KeyError('hardDriveSize')
+asin : B07D43613L
+KeyError('hardDriveSize')
+asin : B078SC3RV1
+KeyError('hardDriveSize')
+asin : B078C6T552
+KeyError('hardDriveSize')
+asin : B00XPUUGDI
+KeyError('hardDriveSize')
+asin : B07BRNDZSQ
+KeyError('hardDriveSize')
+asin : B07HT6XQBZ
+KeyError('hardDriveSize')
+asin : B07B319VTK
+KeyError('hardDriveSize')
+asin : B07MR564NK
+KeyError('hardDriveSize')
+asin : B07DTFMRKR
+KeyError('hardDriveSize')
+asin : B077PQ1VNY
+KeyError('hardDriveSize')
+asin : B0752W6W4Q
+KeyError('hardDriveSize')
+asin : B07HY8D5W4
+KeyError('hardDriveSize')
+asin : B079J4VGPV
+KeyError('hardDriveSize')
+asin : B078NPYG9Y
+KeyError('hardDriveSize')
+asin : B01N5E5T48
+KeyError('hardDriveSize')
+asin : B079XMNCL4
+KeyError('hardDriveSize')
+asin : B07BZPMZ96
+KeyError('hardDriveSize')
+asin : B06XB4L16V
+KeyError('hardDriveSize')
+asin : B01BNDI8DS
+KeyError('hardDriveSize')
+asin : B0783HKK49
+KeyError('hardDriveSize')
+asin : B07BZRFX39
+KeyError('hardDriveSize')
+asin : B07GPQRFZK
+KeyError('hardDriveSize')
+asin : B07HJCCJG2
+KeyError('hardDriveSize')
+asin : B07FFFG9LM
+KeyError('hardDriveSize')
+asin : B06XC5619M
+KeyError('hardDriveSize')
+asin : B079WTGDLH
+KeyError('hardDriveSize')
+asin : B004YZFQRE
+KeyError('hardDriveSize')
+asin : B07FKR8YJM
+KeyError('hardDriveSize')
+asin : B07FWWHGQX
+KeyError('hardDriveSize')
+asin : B00T9RTY70
+KeyError('hardDriveSize')
+asin : B01MR2WT9P
+KeyError('hardDriveSize')
+asin : B07GSHS4Y9
+KeyError('hardDriveSize')
+asin : B077913JZV
+KeyError('hardDriveSize')
+asin : B07L6T9XR5
+KeyError('hardDriveSize')
+asin : B00M9K7L8S
+KeyError('hardDriveSize')
+asin : B01LFGPWJG
+KeyError('hardDriveSize')
+asin : B0728KCRS8
+KeyError('hardDriveSize')
+asin : B00CMYB0K6
+KeyError('hardDriveSize')
+asin : B07MM326NY
+KeyError('hardDriveSize')
+asin : B07DZDHYJ6
+KeyError('hardDriveSize')
+asin : B07J5F9F7G
+KeyError('hardDriveSize')
+asin : B07KLYZLY1
+KeyError('hardDriveSize')
+asin : B07KP52F65
+KeyError('hardDriveSize')
+asin : B06XFGQDHD
+KeyError('hardDriveSize')
+asin : B079PWYP59
+KeyError('hardDriveSize')
+asin : B07BS4M4MT
+KeyError('hardDriveSize')
+asin : B01MZZPKAT
+KeyError('hardDriveSize')
+asin : B07FL128GW
+KeyError('hardDriveSize')
+asin : B07G9QHP9M
+KeyError('hardDriveSize')
+asin : B077J8MCJP
+KeyError('hardDriveSize')
+asin : B07K1MKQ3K
+KeyError('hardDriveSize')
+asin : B07L9MFDNQ
+KeyError('hardDriveSize')
+asin : B07K7SMF64
+KeyError('hardDriveSize')
+asin : B01MDV748N
+KeyError('hardDriveSize')
+asin : B07BMXF1KT
+KeyError('hardDriveSize')
+asin : B07GCRL9V3
+KeyError('hardDriveSize')
+asin : B07C7L3W3R
+KeyError('hardDriveSize')
+asin : B07HHQQKBR
+KeyError('hardDriveSize')
+asin : B000F8EWHY
+KeyError('hardDriveSize')
+asin : B07KMH3SCK
+KeyError('hardDriveSize')
+asin : B079T68BGR
+KeyError('hardDriveSize')
+asin : B07DKSK2ZW
+KeyError('hardDriveSize')
+asin : B00SBQ7GHU
+KeyError('hardDriveSize')
+asin : B00R8OQMUI
+KeyError('hardDriveSize')
+asin : B07FMH67WR
+KeyError('hardDriveSize')
+asin : B07CCPF79Q
+KeyError('hardDriveSize')
+asin : B079WS2NFD
+KeyError('hardDriveSize')
+asin : B07DC1B9HW
+KeyError('hardDriveSize')
+asin : B06ZZ3RLT9
+KeyError('hardDriveSize')
+asin : B07DNFM74X
+KeyError('hardDriveSize')
+asin : B07JZFHLWP
+KeyError('hardDriveSize')
+asin : B07GBGTPN1
+KeyError('hardDriveSize')
+asin : B078B3KS28
+KeyError('hardDriveSize')
+asin : B01LL1ZBYQ
+KeyError('hardDriveSize')
+asin : B005Z0V8P6
+KeyError('hardDriveSize')
+asin : B07GB5Q849
+KeyError('hardDriveSize')
+asin : B07KBBRQMT
+KeyError('hardDriveSize')
+asin : B00TO8C7YG
+KeyError('hardDriveSize')
+asin : B07BB3JYFR
+KeyError('hardDriveSize')
+asin : B07C7P8C9K
+KeyError('hardDriveSize')
+asin : B00J2FXVZU
+KeyError('hardDriveSize')
+asin : B079J5S8ZC
+KeyError('hardDriveSize')
+asin : B01IUH48SE
+KeyError('hardDriveSize')
+asin : B078TNZMCM
+KeyError('hardDriveSize')
+asin : B01J7T0ZD6
+KeyError('hardDriveSize')
+asin : B07C5RXCF7
+KeyError('hardDriveSize')
+asin : B07CTKVGQ5
+KeyError('hardDriveSize')
+asin : B07CWBMDMW
+KeyError('hardDriveSize')
+asin : B07C7S77C3
+KeyError('hardDriveSize')
+asin : B07B4XNK1Z
+KeyError('hardDriveSize')
+asin : B07BD3LMY8
+KeyError('hardDriveSize')
+asin : B06XC4WV99
+KeyError('hardDriveSize')
+asin : B07L44LDJ2
+KeyError('hardDriveSize')
+asin : B01LIRSJYW
+KeyError('hardDriveSize')
+asin : B07KG3FC6D
+KeyError('hardDriveSize')
+asin : B07DNGQP8C
+KeyError('hardDriveSize')
+asin : B07DZMC5LF
+KeyError('hardDriveSize')
+asin : B0786SGQ51
+KeyError('hardDriveSize')
+asin : B00NJVRTHE
+KeyError('hardDriveSize')
+asin : B01LZWRP4N
+KeyError('hardDriveSize')
+asin : B07D39PQ4B
+KeyError('hardDriveSize')
+asin : B07KT8PDVV
+KeyError('hardDriveSize')
+asin : B00GDLHPIK
+KeyError('hardDriveSize')
+asin : B0046W47NY
+KeyError('hardDriveSize')
+asin : B076CS5G1F
+KeyError('hardDriveSize')
+asin : B07KR3RGYB
+KeyError('hardDriveSize')
+asin : B07G8CQL66
+KeyError('hardDriveSize')
+asin : B01LXC965N
+KeyError('hardDriveSize')
+asin : B074WHWGB6
+KeyError('hardDriveSize')
+asin : B01LXMFXO5
+KeyError('hardDriveSize')
+asin : B071P2QN6L
+KeyError('hardDriveSize')
+asin : B06WD4LM6S
+KeyError('hardDriveSize')
+asin : B0167Z1G1S
+KeyError('hardDriveSize')
+asin : B00MMLV7VQ
+KeyError('hardDriveSize')
+asin : B07DV668H7
+KeyError('hardDriveSize')
+asin : B078VP7GX2
+KeyError('hardDriveSize')
+asin : B0765WTB7C
+KeyError('hardDriveSize')
+asin : B07D2JDLTL
+KeyError('hardDriveSize')
+asin : B00CRJQG4G
+KeyError('hardDriveSize')
+asin : B01BF8DN4A
+KeyError('hardDriveSize')
+asin : B016V35VF8
+KeyError('hardDriveSize')
+asin : B01N9XNX3K
+KeyError('hardDriveSize')
+asin : B07HPGSXWQ
+KeyError('hardDriveSize')
+asin : B07DHY79VJ
+KeyError('hardDriveSize')
+asin : B077CX2SKK
+KeyError('hardDriveSize')
+asin : B07H2YK43Q
+KeyError('hardDriveSize')
+asin : B07MYSMVF5
+KeyError('hardDriveSize')
+asin : B07JJGW8WP
+KeyError('hardDriveSize')
+asin : B01N2S55M3
+KeyError('hardDriveSize')
+asin : B07CR8DQPF
+KeyError('hardDriveSize')
+asin : B07JDY44F2
+KeyError('hardDriveSize')
+asin : B07MN9RY8C
+KeyError('hardDriveSize')
+asin : B07L6QTWYT
+KeyError('hardDriveSize')
+asin : B00IZ9K6I4
+KeyError('hardDriveSize')
+asin : B06X9PD747
+KeyError('hardDriveSize')
+asin : B079D353BS
+KeyError('hardDriveSize')
+asin : B07DX87BT3
+KeyError('hardDriveSize')
+asin : B07HGVF2J5
+KeyError('hardDriveSize')
+asin : B07C716KB9
+KeyError('hardDriveSize')
+asin : B06WGT4P8Y
+KeyError('hardDriveSize')
+asin : B07K8J48V5
+KeyError('hardDriveSize')
+asin : B075RTR8W5
+KeyError('hardDriveSize')
+asin : B0792LFCB4
+KeyError('hardDriveSize')
+asin : B07FB28KWW
+KeyError('hardDriveSize')
+asin : B07M616H7N
+KeyError('hardDriveSize')
+asin : B01HAO1W8C
+KeyError('hardDriveSize')
+asin : B07GFFKQZB
+KeyError('hardDriveSize')
+asin : B0161ZDQRG
+KeyError('hardDriveSize')
+asin : B0797ZGJZX
+KeyError('hardDriveSize')
+asin : B079M5892Y
+KeyError('hardDriveSize')
+asin : B07CVQX4N9
+KeyError('hardDriveSize')
+asin : B079YKQN6R
+KeyError('hardDriveSize')
+asin : B01BCU5APG
+KeyError('hardDriveSize')
+asin : B07KL12GDF
+KeyError('hardDriveSize')
+asin : B07K4KXP9V
+KeyError('hardDriveSize')
+asin : B07MRH8ZNZ
+KeyError('hardDriveSize')
+asin : B07GCT8JL8
+KeyError('hardDriveSize')
+asin : B07DQS7ZPQ
+KeyError('hardDriveSize')
+asin : B01KZ1R3X0
+KeyError('hardDriveSize')
+asin : B01AH0ID10
+KeyError('hardDriveSize')
+asin : B0769G4STB
+KeyError('hardDriveSize')
+asin : B01MXDKPAR
+KeyError('hardDriveSize')
+asin : B07KZRF87W
+KeyError('hardDriveSize')
+asin : B01M3RBDH6
+KeyError('hardDriveSize')
+asin : B079K5NK7C
+KeyError('hardDriveSize')
+asin : B07DJ4SVSV
+KeyError('hardDriveSize')
+asin : B071RPDNRZ
+KeyError('hardDriveSize')
+asin : B079J4SL6B
+KeyError('hardDriveSize')
+asin : B00NB4IIC4
+KeyError('hardDriveSize')
+asin : B01MRD7MZP
+KeyError('hardDriveSize')
+asin : B07MR7MP8K
+KeyError('hardDriveSize')
+asin : B0752XZ7XC
+KeyError('hardDriveSize')
+asin : B078W34BK7
+KeyError('hardDriveSize')
+asin : B018AX3OHO
+KeyError('hardDriveSize')
+asin : B07GCRVRHB
+KeyError('hardDriveSize')
+asin : B07K6VDRYM
+KeyError('hardDriveSize')
+asin : B017WURQR0
+KeyError('hardDriveSize')
+asin : B07C63VLVB
+KeyError('hardDriveSize')
+asin : B07FN7PLZN
+KeyError('hardDriveSize')
+asin : B0041SNR7A
+KeyError('hardDriveSize')
+asin : B07CTL8BWL
+KeyError('hardDriveSize')
+asin : B07529YFH8
+KeyError('hardDriveSize')
+asin : B07D31RJSP
+KeyError('hardDriveSize')
+asin : B07CN7THC7
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'hLaHiWoB7SCgVGfHf6pQ'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'hLaHiWoB7SCgVGfHf6pQ'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07DX9592Z
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id '6raHiWoB7SCgVGfHrqo7'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id '6raHiWoB7SCgVGfHrqo7'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})
+asin : B07BZRFX39
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'XLaHiWoB7SCgVGfH46vK'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'XLaHiWoB7SCgVGfH46vK'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 12"'}}, 'status': 400})
+asin : B07DQS7ZPQ
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id '5baIiWoB7SCgVGfHJasq'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id '5baIiWoB7SCgVGfHJasq'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07CN7THC7
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'P7aOiWoB7SCgVGfH465c'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'P7aOiWoB7SCgVGfH465c'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07DX9592Z
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'q7aPiWoB7SCgVGfHEq6u'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'q7aPiWoB7SCgVGfHEq6u'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})
+asin : B07BZRFX39
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'IraPiWoB7SCgVGfHSa_T'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'IraPiWoB7SCgVGfHSa_T'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 12"'}}, 'status': 400})
+asin : B07DQS7ZPQ
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'tLaPiWoB7SCgVGfHia-A'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'tLaPiWoB7SCgVGfHia-A'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07CN7THC7
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'J7aRiWoB7SCgVGfHqLIK'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'J7aRiWoB7SCgVGfHqLIK'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07DX9592Z
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'k7aRiWoB7SCgVGfH2LJ2'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'k7aRiWoB7SCgVGfH2LJ2'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})
+asin : B07BZRFX39
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'CraSiWoB7SCgVGfHDbMg'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'CraSiWoB7SCgVGfHDbMg'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 12"'}}, 'status': 400})
+asin : B07DQS7ZPQ
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'nLaSiWoB7SCgVGfHTLPy'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'nLaSiWoB7SCgVGfHTLPy'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07CN7THC7
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'D7aTiWoB7SCgVGfHs7aR'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'D7aTiWoB7SCgVGfHs7aR'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})
+asin : B07DX9592Z
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'e7aTiWoB7SCgVGfH47Zl'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'e7aTiWoB7SCgVGfH47Zl'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 51"'}}, 'status': 400})
+asin : B07BZRFX39
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id '8raUiWoB7SCgVGfHGLYo'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id '8raUiWoB7SCgVGfHGLYo'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 12"'}}, 'status': 400})
+asin : B07DQS7ZPQ
+RequestError(400, 'mapper_parsing_exception', {'error': {'root_cause': [{'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'hLaUiWoB7SCgVGfHV7c5'"}], 'type': 'mapper_parsing_exception', 'reason': "failed to parse field [ssdSize] of type [long] in document with id 'hLaUiWoB7SCgVGfHV7c5'", 'caused_by': {'type': 'illegal_argument_exception', 'reason': 'For input string: "1 TB HDD + 25"'}}, 'status': 400})

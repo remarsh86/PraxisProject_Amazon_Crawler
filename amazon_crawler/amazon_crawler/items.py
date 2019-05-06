@@ -14,7 +14,8 @@ class AmazonScrapItem(scrapy.Item):
     ram = scrapy.Field()
 
     hardDriveType = scrapy.Field()
-    hardDriveSize = scrapy.Field()
+    hddSize = scrapy.Field()
+    ssdSize = scrapy.Field()
 
     operatingSystem = scrapy.Field()
 

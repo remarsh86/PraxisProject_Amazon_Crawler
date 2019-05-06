@@ -20,7 +20,7 @@ class AmazonCrawlerPipeline(object):
             e = {"asin": item["asin"], "productTitle": item["productTitle"], "price": item["price"], "displaySize": item['screenSize'],
                   "screenResoultionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']), "processorSpeed": item['processorSpeed'],
                   "processorType": item['processorType'], "processorCount": item['processorCount'], "processorBrand": item['processorBrand'],
-                  "ram": item['ram'],"brandName": item['brandName'], "hardDriveType": item['hardDriveType'],"hardDriveSize": item['hardDriveSize'], "graphicsCoprocessor": item['graphicsCoprocessor'],
+                  "ram": item['ram'],"brandName": item['brandName'], "hardDriveType": item['hardDriveType'],"hddSize": item['hddSize'],"ssdSize": item['ssdSize'], "graphicsCoprocessor": item['graphicsCoprocessor'],
                  "chipsetBrand": item['chipsetBrand'], "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
                  "memoryType": item['memoryType'], "averageBatteryLife": item['averageBatteryLife'],
                  "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']) ,
@@ -29,7 +29,7 @@ class AmazonCrawlerPipeline(object):
             #print(res)
         except Exception as e:
             f = open("error.txt", "a+")
-            f.write("asin : ",item["asin"],'\n',repr(e),"\n")
+            f.write("asin : "+item["asin"]+'\n'+repr(e)+"\n")
             print(repr(e))
 
 

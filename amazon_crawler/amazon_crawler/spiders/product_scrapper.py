@@ -53,8 +53,13 @@ class ProductSpider(scrapy.Spider):
 
         product["ram"] = self.getRAM(sel)
 
-        product["hardDriveType"] = self.getHardDriveType(sel)
-        product["hardDriveSize"] = self.getHardDriveSize(sel)
+        product["hardDriveType"] = self.getHardDriveType(sel,product["productTitle"])
+        if product["hardDriveType"] is "SSD" :
+            product["hddSize"] = 0
+            product["ssdSize"] = self.getSsdSize(sel)
+        else  :
+            product["hddSize"] = self.getHddSize(sel)
+            product["ssdSize"] = 0
 
         product["operatingSystem"] = self.getOperatingSystem(sel)
 
@@ -220,23 +225,62 @@ class ProductSpider(scrapy.Spider):
         return None
 
     @staticmethod
-    def getHardDriveType(sel):
+    def getHardDriveType(sel,productTitle):
+        hardDriveTypes = ["SSD","HDD","Hybrid"]
+        hd = None
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
+                    hd = tr.xpath('.//td/text()').get().strip()
+                    for hardDriveType in hardDriveTypes :
+                        if hardDriveType.lower() in hd.lower() :
+                            return hardDriveType                                                       # GB
+            except:
+                pass
+        if hd is not None :
+            if "flash" in hd.lower() or "solid" in hd.lower():
+                return "SSD"
+
+            if "flash" in productTitle.lower()or "solid" in productTitle.lower():
+                return "SSD"
+
+            if "mechanical" in hd.lower() :
+                return "HDD"
+            if  "hd" in productTitle.lower() or "harddrive" in productTitle.lower().replace(" ","") or "hdd" in productTitle.lower() or "mechanical" in productTitle.lower() :
+                return "HDD"
+
+        return hd
+
+    @staticmethod
+    def getHddSize(sel):
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip()
                     if 'GB' in hd:
-                        return hd[hd.find("GB")+2:]
+                        return hd[:hd.find('GB')-1].strip()
                     elif 'TB' in hd:
-                        return hd[hd.find("GB")+2:]
-                    return hd                                                   # GB
+                        return int(hd[:hd.find('TB')-1].strip())*1000 #GB
+
             except:
                 pass
-
+        #Fallback
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip() == "Flash Memory Size":
+                    hd = tr.xpath('.//td/text()').get().strip()
+                    if 'GB' in hd:
+                        return hd[:hd.find('GB')-1].strip()
+                    elif 'TB' in hd:
+                        return int(hd[:hd.find('TB')-1].strip())*1000 #GB
+                    else :
+                        return hd[:hd.find('.')]
+            except:
+                pass
         return None
 
     @staticmethod
-    def getHardDriveSize(sel):
+    def getSsdSize(sel):
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
@@ -331,9 +375,9 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getPrice(sel):
-        price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get().replace('$','')
+        price = sel.xpath('//span[@id="priceblock_ourprice"]/text()').get()
         if price is not None:
-            return price.replace(',', '')
+            return price.replace(',', '').replace('$','')
         return price
 
     @staticmethod
