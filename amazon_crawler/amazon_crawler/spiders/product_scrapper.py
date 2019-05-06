@@ -28,7 +28,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         if limit < 1000:
+         if limit < 7000:
 
              start_urls.append(
                  "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -61,7 +61,7 @@ class ProductSpider(scrapy.Spider):
             product["hddSize"] = self.getHddSize(sel)
             product["ssdSize"] = 0
 
-        product["operatingSystem"] = self.getOperatingSystem(sel)
+        product["operatingSystem"] = self.getOperatingSystem(sel,product["productTitle"])
 
         product["graphicsCoprocessor"] = self.getGraphicsCoprocessor(sel)
         product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'])
@@ -176,25 +176,36 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getProcessorBrand(sel,processorType):
         #This is much faster than parsing.
-        processors = ["nvidia","intel","amd","mediatek"]
-        if processorType is not None :
-            for processor in processors :
-                if processor in processorType.lower() :
-                    return processor.title()
+        processors = { 'amd' : ["radeon","ryzen","amd","radion"]
+        , 'nvidia' : ["nvidia"]
+        , 'arm mali' :["arm","mali"]
+        , "mediatek" :["mediatek"]
+        ,'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86"]
+        ,"dmx" :["dmx"]
+        , "via" :["via"]
+        , "qualcom" : ["qualcom"]
+        , "rockchip" : ["rockchip","rock"]
+        }
+
 
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor Brand":
                     processorBrand = tr.xpath('.//td/text()').get().strip()
                     for processor in processors :
-                        if processor in processorBrand.lower() :
-                            return processor.title()
-                    if "radeon"  in processorBrand.lower() or "ryzen"  in processorBrand.lower() :
-                        return "Amd"
+                        for processorKeyword in processors[processor] :
+                            if processorKeyword.lower() in processorBrand.lower() :
+                                return processor.title()
 
                     return processorBrand.title()
             except:
                 pass
+
+        if processorType is not None :
+            for processor in processors :
+                for processorKeyword in processors[processor] :
+                    if processorKeyword.lower() in processorType.lower() :
+                        return processor.title()
 
 
         return None
@@ -226,27 +237,30 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getHardDriveType(sel,productTitle):
-        hardDriveTypes = ["SSD","HDD","Hybrid"]
+        hardDriveTypes = {"SSD" :["ssd","flash","solid"]
+        ,"HDD" :["hdd","rpm","mechanical","harddrive","hd"]
+        ,"Hybrid" :["hybrid"]
+        ,"emmc" :["emmc"]
+        }
         hd = None
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip()
                     for hardDriveType in hardDriveTypes :
-                        if hardDriveType.lower() in hd.lower() :
-                            return hardDriveType                                                       # GB
+                        for hardDriveTypeKeyword in hardDriveTypes[hardDriveType] :
+                            if hardDriveTypeKeyword.lower() in hd.lower() :
+                                return hardDriveType                                                  # GB
             except:
                 pass
+
+        if productTitle is not None :
+            for hardDriveType in hardDriveTypes :
+                for hardDriveTypeKeyword in hardDriveTypes[hardDriveType] :
+                    if hardDriveTypeKeyword.lower() in productTitle.lower() :
+                        return hardDriveType
         if hd is not None :
-            if "flash" in hd.lower() or "solid" in hd.lower():
-                return "SSD"
-
-            if "flash" in productTitle.lower()or "solid" in productTitle.lower():
-                return "SSD"
-
-            if "mechanical" in hd.lower() :
-                return "HDD"
-            if  "hd" in productTitle.lower() or "harddrive" in productTitle.lower().replace(" ","") or "hdd" in productTitle.lower() or "mechanical" in productTitle.lower() :
+            if not hd.isalpha() :
                 return "HDD"
 
         return hd
@@ -256,7 +270,7 @@ class ProductSpider(scrapy.Spider):
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
-                    hd = tr.xpath('.//td/text()').get().strip()
+                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
                         return hd[:hd.find('GB')-1].strip()
                     elif 'TB' in hd:
@@ -268,7 +282,7 @@ class ProductSpider(scrapy.Spider):
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Flash Memory Size":
-                    hd = tr.xpath('.//td/text()').get().strip()
+                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
                         return hd[:hd.find('GB')-1].strip()
                     elif 'TB' in hd:
@@ -284,7 +298,7 @@ class ProductSpider(scrapy.Spider):
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
-                    hd = tr.xpath('.//td/text()').get().strip()
+                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
                         return hd[:hd.find('GB')-1].strip()
                     elif 'TB' in hd:
@@ -296,7 +310,7 @@ class ProductSpider(scrapy.Spider):
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Flash Memory Size":
-                    hd = tr.xpath('.//td/text()').get().strip()
+                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
                         return hd[:hd.find('GB')-1].strip()
                     elif 'TB' in hd:
@@ -308,26 +322,43 @@ class ProductSpider(scrapy.Spider):
         return None
 
     @staticmethod
-    def getOperatingSystem(sel):
-        operatingSystems = ["windows 10","windows 8.1","windows 8","windows 7","linux","mac os","windows vista","windows xp","dos","chrome","android","windows"]
+    def getOperatingSystem(sel,productTitle):
+        operatingSystems = {
+        "windows 10" :["windows 10","window 10","win 10","w10"]
+        ,"windows 8.1":["windows 8.1","window 8.1","win 8.1","w8.1"]
+        ,"windows 8" :["windows 8","window 8","win 8","w8"]
+        ,"windows 7":["windows 7","window 7","win 7","w7"]
+        ,"linux" : ["linux","ubuntu"]
+        ,"windows vista":["vista"]
+        ,"windows xp" : ["windows xp","window xp","win xp","wxp"]
+        ,"dos" :["dos"]
+        ,"chrome" :["chrome"]
+        ,"android" : ["android"]
+        ,"windows" : ["pc","windows","window","win"]
+        ,"unix" : ["unix"]
+        ,"thin pro" :["thinpro","hp","thin pro"]
+        ,"mac os" :["mac os","os x","ios","os"]
+        }
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
                     os = tr.xpath('.//td/text()').get().strip()
-                    for operatingSystem in operatingSystems:
-                        if operatingSystem.lower().strip() in os.lower().strip():
-                            return operatingSystem.title()
-                        if "mac" in os.lower().strip() :
-                            return "Mac Os"
-                    return os.title()
+                    for operatingSystem in operatingSystems :
+                        for operatingSystemKeyword in operatingSystems[operatingSystem] :
+                            if operatingSystemKeyword.lower() in os.lower() :
+                                return operatingSystem.title()
             except:
                 pass
+        if productTitle is not None :
+            for operatingSystem in operatingSystems :
+                for operatingSystemKeyword in operatingSystems[operatingSystem] :
+                    if operatingSystemKeyword.lower() in productTitle.lower() :
+                        return operatingSystem.title()
 
-        return None
+        return "None"
 
     @staticmethod
     def getGraphicsCoprocessor(sel):
-        brands = ['intel', 'amd', 'nvidia']
         #search first for the gpu in the specification table
         for tr in sel.xpath('//tr'):
             try:
@@ -357,18 +388,35 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getChipsetBrand(sel, gpu):
-        brands = ['intel' , 'amd' , 'nvidia']
+        brands = { 'amd' : ["radeon","ryzen","amd"]
+        , 'nvidia' : ["geoforce","nvidia","gtx","rtx","mx","gx"]
+        , 'arm mali' :["arm","mali"]
+        , "mediatek" :["mediatek"]
+        ,'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3"]
+
+        }
         for tr in sel.xpath('//tr'):
             try:
-                # if tr.xpath('.//th/text()').get().strip() == "Chipset Brand":
-                #     cb = tr.xpath('.//td/text()').get().strip()
-                for brand in brands:
-                    if brand in gpu.lower():
-                        return brand.title()
+                if tr.xpath('.//th/text()').get().strip() == "Chipset Brand":
+                    cb = tr.xpath('.//td/text()').get().strip()
+                    if cb is not None  :
+                        for brand in brands :
+                            for brand_keyword in brands[brand] :
+                                if brand_keyword in cb.lower() :
+                                    return brand.title()
             except:
                 pass
+        if gpu is None  :
+            return None
+
+        for brand in brands:
+            for brand_keyword in brands[brand] :
+                if brand_keyword in gpu.lower() :
+                    return brand.title()
+
         if gpu is not None :
             return gpu.title()
+
         return None
 
 #    <span class="a-size-base a-color-base">Screen Size</span>
@@ -383,13 +431,14 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getBrandName(sel, title):
         brands =["Dell", "HP", "Lenovo", "Acer", "Asus", "Apple", "Samsung", "MSI", "Alienware", "Razer", "Huawai", "LG",
-                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan"]
-        for brand in brands:
-            if brand.lower() in title.lower():
-                if brand == "XPS":
-                    return "Dell"
-                else :
-                    return brand.title()
+                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan","Google"]
+        if title is not None :
+            for brand in brands:
+                if brand.lower() in title.lower():
+                    if brand == "XPS" or brand == 'Latitude':
+                        return "Dell"
+                    else :
+                        return brand.title()
 
         for tr in sel.xpath('//tr'):
             try:

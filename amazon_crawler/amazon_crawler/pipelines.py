@@ -17,11 +17,11 @@ class AmazonCrawlerPipeline(object):
             #self.cur.execute(sql, vals)
             #self.conn.commit()
             #print("Inserted into Test Database!")
-            e = {"asin": item["asin"], "productTitle": item["productTitle"], "price": item["price"], "displaySize": item['screenSize'],
+            e = {"asin": item["asin"], "productTitle": str(item["productTitle"]), "price": float(item["price"]), "displaySize": item['screenSize'],
                   "screenResoultionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']), "processorSpeed": item['processorSpeed'],
-                  "processorType": item['processorType'], "processorCount": item['processorCount'], "processorBrand": item['processorBrand'],
-                  "ram": item['ram'],"brandName": item['brandName'], "hardDriveType": item['hardDriveType'],"hddSize": item['hddSize'],"ssdSize": item['ssdSize'], "graphicsCoprocessor": item['graphicsCoprocessor'],
-                 "chipsetBrand": item['chipsetBrand'], "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
+                  "processorType": str(item['processorType']), "processorCount": item['processorCount'], "processorBrand": str(item['processorBrand']),
+                  "ram": item['ram'],"brandName": item['brandName'], "hardDriveType": item['hardDriveType'],"hddSize": item['hddSize'],"ssdSize": item['ssdSize'], "graphicsCoprocessor": str(item['graphicsCoprocessor']),
+                 "chipsetBrand": str(item['chipsetBrand']), "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
                  "memoryType": item['memoryType'], "averageBatteryLife": item['averageBatteryLife'],
                  "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']) ,
                  "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
