@@ -46,12 +46,17 @@ class ProductSpider(scrapy.Spider):
 
         product["productTitle"] = self.getProductTitle(sel)
 
+        product["screenSize"] = self.getScreenSize(sel,product["productTitle"])
+        product["ram"] = self.getRAM(sel,product["productTitle"])
+        product["brandName"] = self.getBrandName(sel, product['productTitle'])
+        product["operatingSystem"] = self.getOperatingSystem(sel,product["productTitle"])
+
         product["processorSpeed"] = self.getProcessorSpeed(sel)
         product["processorType"] = self.getProcessorType(sel)
         product["processorBrand"] = self.getProcessorBrand(sel,product["processorType"])
         product["processorCount"] = self.getProcessorCount(sel)
 
-        product["ram"] = self.getRAM(sel)
+
 
         product["hardDriveType"] = self.getHardDriveType(sel,product["productTitle"])
         if product["hardDriveType"] is "SSD" :
@@ -61,17 +66,17 @@ class ProductSpider(scrapy.Spider):
             product["hddSize"] = self.getHddSize(sel)
             product["ssdSize"] = 0
 
-        product["operatingSystem"] = self.getOperatingSystem(sel,product["productTitle"])
+
 
         product["graphicsCoprocessor"] = self.getGraphicsCoprocessor(sel)
         product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'])
 
 
-        product["brandName"] = self.getBrandName(sel, product['productTitle'])
+
 
         product["price"] = self.getPrice(sel)
 
-        product["screenSize"] = self.getScreenSize(sel)
+
         product["maxScreenResolution_X"] = self.getMaxScreenResolution_X(sel)
         product["maxScreenResolution_Y"] = self.getMaxScreenResolution_Y(sel)
 
@@ -126,20 +131,67 @@ class ProductSpider(scrapy.Spider):
         return productTitle
 
     @staticmethod
-    def getScreenSize(sel):
+    def getScreenSize(sel,productTitle):
+
+        result = None
+        #Search in Technical details 1
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Screen Size" or tr.xpath('.//th/span/text()').get().strip() == "Screen Size" :
                     screenSize = tr.xpath('.//td/text()').get().strip()
-                    screenSize = float(screenSize[:screenSize.find('inches')-1])    # inches
-                    #Fallback 1
-                    if screenSize is None :
-                        screenSize = float(screenSize[:screenSize.find('in')-1])
-                    return screenSize
+                    result = ProductSpider.getScreenSizeFromString(screenSize)
+                    if result is not None :
+                        return result
             except:
                 pass
 
+        #Search in Technical details 1
+        for div in sel.xpath('//div'):
+            try:
+                if tr.xpath('.//th/text()').get().strip() == "Screen Size" or tr.xpath('.//th/span/text()').get().strip() == "Screen Size" :
+                    screenSize = tr.xpath('.//td/text()').get().strip()
+                    result = ProductSpider.getScreenSizeFromString(screenSize)
+                    if result is not None :
+                        return result
+            except:
+                pass
+
+        #Search in Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip()
+            result = ProductSpider.getScreenSizeFromString(bulletedItem)
+            if result is not None :
+                return result
+
+        #Search in Product title
+        if productTitle is not None :
+            result =  ProductSpider.getScreenSizeFromString(productTitle)
+            if result is not None :
+                return result
+
         return None
+
+    @staticmethod
+    def getScreenSizeFromString(string) :
+        string = string.lower().replace(" ","")
+
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}inch",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("inch")])
+
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}\"",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find('"')])
+
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}in",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find('in')])
+
+
+
 
     @staticmethod
     def getProcessorSpeed(sel):
@@ -223,16 +275,63 @@ class ProductSpider(scrapy.Spider):
         return None
 
     @staticmethod
-    def getRAM(sel):
+    def getRAM(sel,productTitle):
+        possibleValues = [1,2,3,4,6,8,12,16,20,24,32,64,128]
+
+        #Search in Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "RAM":
                     ram = tr.xpath('.//td/text()').get().strip()
-                    ram = float(ram[:ram.find('GB')-1].strip())
-                    return ram
+                    result = ProductSpider.getRamFromString("ram:"+ram)
+                    if result is not None and result in possibleValues:
+                        return result
             except:
                 pass
 
+        #Search in Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.getRamFromString(bulletedItem)
+            if result is not None and result in possibleValues:
+                return result
+
+        #Search in Product title
+        result = ProductSpider.getRamFromString(bulletedItem)
+        if result is not None and result in possibleValues:
+            return result
+
+        return None
+
+
+        return None
+
+    @staticmethod
+    def getRamFromString(string) :
+        string = string.lower().replace(" ","")
+
+        matches = re.findall("ram:[0-9]+",string)
+
+        if len(matches) >0 :
+            return int(matches[0][matches[0].find("ram:")+4:])
+        return None
+
+        matches = re.findall("ram:[0-9]gbram",string)
+
+        if len(matches) >0 :
+            return int(matches[0][:matches[0].find("gbram:")])
+        return None
+
+        matches = re.findall("ram:[0-9]ram",string)
+
+        if len(matches) >0 :
+            return int(matches[0][:matches[0].find("ram:")])
+        return None
+
+        matches = re.findall("ram:[0-9]tbram",string)
+
+        if len(matches) >0 :
+            return int(matches[0][:matches[0].find("gbram:")])*1000
         return None
 
     @staticmethod
@@ -323,7 +422,7 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getOperatingSystem(sel,productTitle):
-        operatingSystems = {
+        operatingSystemsDict = {
         "windows 10" :["windows 10","window 10","win 10","w10"]
         ,"windows 8.1":["windows 8.1","window 8.1","win 8.1","w8.1"]
         ,"windows 8" :["windows 8","window 8","win 8","w8"]
@@ -339,21 +438,28 @@ class ProductSpider(scrapy.Spider):
         ,"thin pro" :["thinpro","hp","thin pro"]
         ,"mac os" :["mac os","os x","ios","os"]
         }
+
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
                     os = tr.xpath('.//td/text()').get().strip()
-                    for operatingSystem in operatingSystems :
-                        for operatingSystemKeyword in operatingSystems[operatingSystem] :
-                            if operatingSystemKeyword.lower() in os.lower() :
-                                return operatingSystem.title()
+                    result = ProductSpider.extractPropertUsingKeywordsDict(operatingSystemsDict,os)
+                    if result is not None :
+                        return result.title()
             except:
                 pass
+        #Extract from Product title
         if productTitle is not None :
-            for operatingSystem in operatingSystems :
-                for operatingSystemKeyword in operatingSystems[operatingSystem] :
-                    if operatingSystemKeyword.lower() in productTitle.lower() :
-                        return operatingSystem.title()
+            result = ProductSpider.extractPropertUsingKeywordsDict(operatingSystemsDict,productTitle)
+            if result is not None :
+                return result.title()
+        #Extract from Feature tabs
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.extractPropertUsingKeywordsDict(operatingSystemsDict,bulletedItem)
+            if result is not None :
+                return result.title()
 
         return "None"
 
@@ -429,26 +535,47 @@ class ProductSpider(scrapy.Spider):
         return price
 
     @staticmethod
-    def getBrandName(sel, title):
-        brands =["Dell", "HP", "Lenovo", "Acer", "Asus", "Apple", "Samsung", "MSI", "Alienware", "Razer", "Huawai", "LG",
-                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan","Google"]
-        if title is not None :
-            for brand in brands:
-                if brand.lower() in title.lower():
-                    if brand == "XPS" or brand == 'Latitude':
-                        return "Dell"
-                    else :
-                        return brand.title()
+    def getBrandName(sel, productTitle):
+        brandsList =["Dell", "HP", "Lenovo", "Acer", "Asus", "Apple", "Samsung", "MSI", "Alienware", "Razer", "Huawai", "LG",
+                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan","Google","Microsoft"]
 
+
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Brand Name":
                     brandName = tr.xpath('.//td/text()').get().strip()
-                    return brandName
+                    result = ProductSpider.extractBrandNameFromString(brandsList,brandName)
+                    if result is not None :
+                        return result.title()
             except:
                 pass
 
+        #Extract from Product title
+        if productTitle is not None :
+            result = ProductSpider.extractBrandNameFromString(brandsList,productTitle)
+            if result is not None :
+                return result.title()
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.extractBrandNameFromString(brandsList,bulletedItem)
+            if result is not None :
+                return result
+
         return None
+
+    @staticmethod
+    def extractBrandNameFromString(brandList,string) :
+
+        string = string.lower().replace(" ","")
+        for brand in brandList :
+            if brand.lower() in string :
+                return brand.title()
+
+        return None
+
 
     @staticmethod
     def getMaxScreenResolution_X(sel):
@@ -566,6 +693,17 @@ class ProductSpider(scrapy.Spider):
             pass
 
         return None
+
+    #Helper method
+    @staticmethod
+    def extractPropertUsingKeywordsDict(valuesToKeywordsDict,toExtractString) :
+        for value in valuesToKeywordsDict :
+            for keyword in valuesToKeywordsDict[value] :
+                if keyword.lower() in toExtractString.lower().replace(" ","") :
+                    return value.title()
+        return None
+
+
 
     def spider_opened(self):
         print("\n\n\nSpider Opened\n\n\n")

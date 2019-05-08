@@ -3,7 +3,7 @@ BOT_NAME = 'amazon_crawler'
 SPIDER_MODULES = ['amazon_crawler.spiders']
 NEWSPIDER_MODULE = 'amazon_crawler.spiders'
 LOG_LEVEL  = "ERROR"
-# LOG_ENABLED = False
+#LOG_ENABLED = False
 
 # Retry many times since proxies often fail
 #RETRY_TIMES = 10
