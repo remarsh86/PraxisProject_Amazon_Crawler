@@ -30,7 +30,7 @@ class AmazonCrawlerPipeline(object):
         except Exception as e:
             f = open("error.txt", "a+")
             f.write("asin : "+item["asin"]+'\n'+repr(e)+"\n")
-            print(repr(e))
+            #print(repr(e))
 
 
     @classmethod
