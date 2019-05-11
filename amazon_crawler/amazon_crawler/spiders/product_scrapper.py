@@ -51,42 +51,40 @@ class ProductSpider(scrapy.Spider):
         product["brandName"] = self.getBrandName(sel, product['productTitle'])
         product["operatingSystem"] = self.getOperatingSystem(sel,product["productTitle"])
 
-        product["processorSpeed"] = self.getProcessorSpeed(sel)
-        product["processorType"] = self.getProcessorType(sel)
-        product["processorBrand"] = self.getProcessorBrand(sel,product["processorType"])
+        product["itemWeight"] = self.getItemWeight(sel,product["productTitle"])
+
+        product["price"] = self.getPrice(sel)
+
+        product["processorSpeed"] = self.getProcessorSpeed(sel,product["productTitle"])
+        product["processorType"] = self.getProcessorType(sel,product["productTitle"])
+        product["processorBrand"] = self.getProcessorBrand(sel,product["processorType"],product["productTitle"])
         product["processorCount"] = self.getProcessorCount(sel)
 
 
-
         product["hardDriveType"] = self.getHardDriveType(sel,product["productTitle"])
-        if product["hardDriveType"] is "SSD" :
+
+        if product["hardDriveType"] == "SSD" :
             product["hddSize"] = 0
-            product["ssdSize"] = self.getSsdSize(sel)
-        else  :
-            product["hddSize"] = self.getHddSize(sel)
+            product["ssdSize"] = self.getSsdSize(sel,product["productTitle"])
+        elif product["hardDriveType"] == "HDD" :
+            product["hddSize"] = self.getHddSize(sel,product["productTitle"])
+            product["ssdSize"] = 0
+        elif product["hardDriveType"] == "Hybrid" :
+            product["hddSize"] = self.getHddSize(sel,product["productTitle"])
+            product["ssdSize"] = self.getSsdSize(sel,product["productTitle"])
+        else :
+            product["hddSize"] = 0
             product["ssdSize"] = 0
 
 
-
         product["graphicsCoprocessor"] = self.getGraphicsCoprocessor(sel)
-        product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'])
-
-
-
-
-        product["price"] = self.getPrice(sel)
+        product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'],product["processorBrand"])
 
 
         product["maxScreenResolution_X"] = self.getMaxScreenResolution_X(sel)
         product["maxScreenResolution_Y"] = self.getMaxScreenResolution_Y(sel)
 
-        product["itemWeight"] = self.getItemWeight(sel)
-
-        product["memoryType"] = self.getMemoryType(sel)
-
         product["averageBatteryLife"] = self.getAverageBatteryLife(sel)
-
-
 
         prodDimensions = self.getProductDimensions(sel)
         if prodDimensions is None:
@@ -194,70 +192,212 @@ class ProductSpider(scrapy.Spider):
 
 
     @staticmethod
-    def getProcessorSpeed(sel):
+    def getProcessorSpeed(sel,productTitle):
+
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor":
                     processor = tr.xpath('.//td/text()').get().strip()
-                    processorSpeed = float(processor[:processor.find('GHz')].strip())       # GHz
-                    return processorSpeed
+                    if "ghz" in processor.lower() :
+                        processorSpeed = float(processor[:processor.find('GHz')].strip())       # GHz
+                        return processorSpeed
             except:
                 pass
 
+        if productTitle is not None :
+            result = ProductSpider.getProcessorSpeedFromString(productTitle)
+            if result is not None and result != "None" and not result.isspace() :
+                return result
+
+        #Search in Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip()
+            result = ProductSpider.getProcessorSpeedFromString(bulletedItem)
+            if result is not None and result != "None" and not result.isspace() :
+                return result
 
         return None
 
     @staticmethod
-    def getProcessorType(sel):
+    def getProcessorSpeedFromString(string) :
+        if string is not None :
+            tokens = string.split(",")
+
+            for token in tokens :
+                #Intel ---------------
+                modelMatch = re.findall("i[3|5|7]{1}-[0-9]{4}[h|q|u]{0,2}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                #Intel ---------------
+                modelMatch = re.findall("intelcorei[3|5|7]{1}[0-9]{0,4}[h|q|u]{0,2}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("intelcorei[3|5|7]{1}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("corei[3|5|7]{1}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("[0-9]{1}\.[0-9]{1,2}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][:modelMatch[0].find("ghz")]
+
+        return None
+
+
+    @staticmethod
+    def getProcessorType(sel,productTitle):
+
+        processors = { 'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86","atom","xeon"]
+        , "qualcom" : ["qualcom"]
+        , "rockchip" : ["rockchip","rock"]
+        ,'amd' : ["radeon","ryzen","amd","radion"]
+        , 'nvidia' : ["tegra"]
+        , 'arm mali' :["arm","mali"]
+        , "mediatek" :["mediatek"]
+        ,"dmx" :["dmx"]
+        , "via" :["via"]
+
+        }
+        result = None
+
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor":
                     processor = tr.xpath('.//td/text()').get().strip()
                     processorType = None
-                    if "GHz" in processor :
-                        processorType = processor[processor.find('GHz')+3:].strip()
-                    else :
-                        #In case it doesn't have the GHz part in the name.
-                        processorType = processor
-                    return processorType.title()
+                    if processor is not None :
+                        if "GHz" in processor :
+                            result = processor[processor.find('GHz')+3:].strip()
+                        else :
+                            #In case it doesn't have the GHz part in the name.
+                            result = processor
+
             except:
                 pass
 
+        if result is None or result.isdigit() or result.isspace():
+            #print(productTitle)
+            if productTitle is not None :
+                result = ProductSpider.getProcessorTypeFromString(productTitle)
+                if result is not None and not result.isdigit() and not result.isspace():
+                    return result
+
+            #Search in Features tab
+            for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+                bulletedItem = sentence.get().strip()
+                result = ProductSpider.getProcessorTypeFromString(bulletedItem)
+                if result is not None and not result.isdigit() and not result.isspace() :
+                    return result
+
+        for intelKeyword in processors["intel"] :
+            if result is not None and  intelKeyword in result.lower() :
+                result = ProductSpider.getNormalizedIntelProcessor(result)
+
+        if result is None or result == "None" or result.isspace():
+            result = ProductSpider.getProcessorBrand(sel,None,productTitle)
+
+
+        return result
+    @staticmethod
+    def getNormalizedIntelProcessor(string) :
+        result = "Intel"
+        match = re.findall("i[3|5|7]{1}",string)
+
+        if len(match) > 0 :
+            return result +" core "+match[0]
+
+        if  "intel" not in string.lower() :
+            return "Intel "+string
+
+
+    @staticmethod
+    def getProcessorTypeFromString(string) :
+        #Try 1
+        if string is not None :
+            tokens = string.split(",")
+
+            model = ""
+            brand = ""
+
+            for token in tokens :
+                #Intel ---------------
+                modelMatch = re.findall("i[3|5|7]{1}-[0-9]{4}[H|Q|U]{0,2}",token)
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model != "":
+                    model ="Intel core "+ modelMatch[0]
+                #Intel ---------------
+                modelMatch = re.findall("intel core i[3|5|7]{1}[0-9]{0,4}[h|q|u]{0,2}",token.lower())
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model == "":
+                    model = "Intel core "+modelMatch[0][modelMatch[0].find("intel core ")+11:]
+                modelMatch = re.findall("intel core i[3|5|7]{1}",token.lower())
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model == "":
+                    model = "Intel core "+modelMatch[0][modelMatch[0].find("intel core ")+11:]
+                modelMatch = re.findall("core i[3|5|7]{1}",token.lower())
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model == "":
+                    model = "Intel " + modelMatch[0]
+            if model == "" :
+                return None
+
+
+            return model
         return None
 
     @staticmethod
-    def getProcessorBrand(sel,processorType):
+    def getProcessorBrand(sel,processorType,productTitle):
         #This is much faster than parsing.
-        processors = { 'amd' : ["radeon","ryzen","amd","radion"]
-        , 'nvidia' : ["nvidia"]
-        , 'arm mali' :["arm","mali"]
-        , "mediatek" :["mediatek"]
-        ,'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86"]
-        ,"dmx" :["dmx"]
-        , "via" :["via"]
+        processors = { 'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86","atom","xeon"]
         , "qualcom" : ["qualcom"]
         , "rockchip" : ["rockchip","rock"]
+        ,'amd' : ["radeon","ryzen","amd","radion"]
+        , 'nvidia' : ["tegra"]
+        , 'arm mali' :["arm","mali"]
+        , "mediatek" :["mediatek"]
+        ,"dmx" :["dmx"]
+        , "via" :["via"]
+
         }
 
-
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor Brand":
                     processorBrand = tr.xpath('.//td/text()').get().strip()
-                    for processor in processors :
-                        for processorKeyword in processors[processor] :
-                            if processorKeyword.lower() in processorBrand.lower() :
-                                return processor.title()
-
-                    return processorBrand.title()
+                    result = ProductSpider.extractPropertUsingKeywordsDict(processors,processorBrand)
+                    if result is not None :
+                        return result.title()
             except:
                 pass
-
+        #Extract from Processor type
         if processorType is not None :
-            for processor in processors :
-                for processorKeyword in processors[processor] :
-                    if processorKeyword.lower() in processorType.lower() :
-                        return processor.title()
+            result = ProductSpider.extractPropertUsingKeywordsDict(processors,processorType)
+            if result is not None :
+                return result.title()
+        #Extract from Product title
+        if productTitle is not None :
+            result = ProductSpider.extractPropertUsingKeywordsDict(processors,productTitle)
+            if result is not None :
+                return result.title()
+
+        #Search in Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            if bulletedItem is not None :
+                result = ProductSpider.extractPropertUsingKeywordsDict(processors,productTitle)
+                if result is not None :
+                    return result.title()
 
 
         return None
@@ -303,7 +443,6 @@ class ProductSpider(scrapy.Spider):
 
         return None
 
-
     @staticmethod
     def getRamFromString(string) :
         string = string.lower().replace(" ","")
@@ -314,111 +453,340 @@ class ProductSpider(scrapy.Spider):
             return int(matches[0][matches[0].find("ram:")+4:])
         return None
 
-        matches = re.findall("ram:[0-9]gbram",string)
+
+
+        matches = re.findall("[0-9]+gbram",string)
 
         if len(matches) >0 :
-            return int(matches[0][:matches[0].find("gbram:")])
-        return None
+            return int(matches[0][:matches[0].find("gbram")])
 
-        matches = re.findall("ram:[0-9]ram",string)
 
-        if len(matches) >0 :
-            return int(matches[0][:matches[0].find("ram:")])
-        return None
 
-        matches = re.findall("ram:[0-9]tbram",string)
+        matches = re.findall("[0-9]+gbsdram",string)
 
         if len(matches) >0 :
-            return int(matches[0][:matches[0].find("gbram:")])*1000
+            return int(matches[0][:matches[0].find("gbsdram")])
+
+        matches = re.findall("[0-9]+gbddr",string)
+
+        if len(matches) >0 :
+            return int(matches[0][:matches[0].find("gbddr")])
         return None
 
     @staticmethod
     def getHardDriveType(sel,productTitle):
-        hardDriveTypes = {"SSD" :["ssd","flash","solid"]
-        ,"HDD" :["hdd","rpm","mechanical","harddrive","hd"]
-        ,"Hybrid" :["hybrid"]
-        ,"emmc" :["emmc"]
-        }
-        hd = None
+
+        isHDD = ProductSpider.isHdd(sel,productTitle)
+        isSSD = ProductSpider.isSsd(sel,productTitle)
+        isHybrid = isHDD and isSSD
+
+        if isHybrid :
+            return "Hybrid"
+        if isHDD :
+            return "HDD"
+        if isSSD :
+            return "SSD"
+
+
+        return None
+    @staticmethod
+    def isHdd(sel,productTitle) :
+        keywords = {"HDD":["hdd","rpm","mechanical"]}
+        #Extract from Product title
+        if productTitle is not None :
+            result = ProductSpider.extractPropertUsingKeywordsDict(keywords, productTitle)
+            if result is not None :
+                return True
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.extractPropertUsingKeywordsDict(keywords, bulletedItem)
+            if result is not None :
+                return True
+
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip()
-                    for hardDriveType in hardDriveTypes :
-                        for hardDriveTypeKeyword in hardDriveTypes[hardDriveType] :
-                            if hardDriveTypeKeyword.lower() in hd.lower() :
-                                return hardDriveType                                                  # GB
+                    result = ProductSpider.extractPropertUsingKeywordsDict(keywords, hd)
+                    if result is not None :
+                        return True                                               # GB
             except:
                 pass
 
+
+
+        return False
+
+    @staticmethod
+    def isSsd(sel,productTitle) :
+        keywords = {"SSD" :["ssd","flash","solidstate","emmc","nvme","pcie"]}
+        #Extract from Product title
         if productTitle is not None :
-            for hardDriveType in hardDriveTypes :
-                for hardDriveTypeKeyword in hardDriveTypes[hardDriveType] :
-                    if hardDriveTypeKeyword.lower() in productTitle.lower() :
-                        return hardDriveType
-        if hd is not None :
-            if not hd.isalpha() :
-                return "HDD"
+            result = ProductSpider.extractPropertUsingKeywordsDict(keywords, productTitle)
+            if result is not None :
+                return True
 
-        return hd
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.extractPropertUsingKeywordsDict(keywords, bulletedItem)
+            if result is not None :
+                return True
+
+
+        #Extract from Technical details
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip().replace(" ","").lower() == "solidstatedrive":
+                    hd = tr.xpath('.//td/text()').get().strip()
+                    result = ProductSpider.extractPropertUsingKeywordsDict(keywords, hd)
+                    if result is not None :
+                        return True                                               # GB
+            except:
+                pass
+        #Extract from Technical details
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip().replace(" ","").lower() == "flashmemorysize":
+                    hd = tr.xpath('.//td/text()').get().strip()
+                    result = ProductSpider.extractPropertUsingKeywordsDict(keywords, hd)
+                    if result is not None :
+                        return True                                               # GB
+            except:
+                pass
+        #Extract from Technical details
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
+                    hd = tr.xpath('.//td/text()').get().strip()
+                    result = ProductSpider.extractPropertUsingKeywordsDict(keywords, hd)
+                    if result is not None :
+                        return True                                               # GB
+            except:
+                pass
+
+        return False
 
     @staticmethod
-    def getHddSize(sel):
+    def getHddSize(sel,productTitle):
+
+        #Extract from Proudct title
+        if productTitle is not None :
+            result = ProductSpider.getHDDSizeFromString(productTitle)
+            if result is not None :
+                return result
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.getHDDSizeFromString(bulletedItem)
+            if result is not None :
+                return result
+
+        #Extract from Technical Details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
-                    if 'GB' in hd:
-                        #print(hd[:hd.find('GB')-1].strip())
-                        return hd[:hd.find('GB')].strip()
-                    elif 'TB' in hd:
-                        #print(hd[:hd.find('TB')].strip())
-                        return int(hd[:hd.find('TB')].strip())*1000 #GB
+                    result = ProductSpider.getHDDSizeFromString("harddrive"+hd)
+                    if result is not None :
+                        return result
 
             except:
                 pass
-        #Fallback
+
+
+
+        return None
+
+    @staticmethod
+    def getHDDSizeFromString(string) :
+
+        string = string.lower().replace(" ","").replace(":","").replace("_","").replace("-","")
+
+        string = re.sub("ddr[0-9]","",string)
+        matches = re.findall("[0-9]+tbhdd",string)
+
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("tbhdd")])*1000
+
+        matches = re.findall("[0-9]+gbhdd",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("gbhdd")])
+
+        matches = re.findall("memory[0-9]+",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("memory")+6:])
+
+
+        matches = re.findall("hdd[0-9]+tb",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("hdd")+3:matches[0].find("tb")])*1000
+
+        matches = re.findall("hdd[0-9]+gb",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("hdd")+3:matches[0].find("gb")])
+
+
+        matches = re.findall("hdd[0-9]+",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("hdd")+3:])
+
+        matches = re.findall("harddrive[0-9]+tb",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:matches[0].find("tb")])*1000
+
+        matches = re.findall("harddrive[0-9]+gb",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:matches[0].find("gb")])
+
+        matches = re.findall("harddrive[0-9]+",string)
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:])
+
+
+
+        return None
+
+
+    @staticmethod
+    def getSsdSize(sel,productTitle):
+
+
+
+        #Extract from Proudct title
+        if productTitle is not None :
+            result = ProductSpider.getSSDSizeFromString(productTitle)
+            if result is not None :
+                return result
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.getSSDSizeFromString(bulletedItem)
+            if result is not None :
+                return result
+
+        #Extract from Technical details
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip().replace(" ","").lower() == "solidstatedrive":
+                    hd = tr.xpath('.//td/text()').get().strip()
+                    result = ProductSpider.getSSDSizeFromString("memory"+hd)
+                    if result is not None :
+                        return result                                            # GB
+            except:
+                pass
+        #Extract from Technical Details 1
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Flash Memory Size":
                     hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
-                    if 'GB' in hd:
-                        return hd[:hd.find('GB')].strip()
-                    elif 'TB' in hd:
-                        return int(hd[:hd.find('TB')].strip())*1000 #GB
-                    else :
-                        return hd[:hd.find('.')]
+
+                    result = ProductSpider.getSSDSizeFromString("memory"+hd)
+                    if result is not None :
+                        return result
             except:
                 pass
-        return None
 
-    @staticmethod
-    def getSsdSize(sel):
+        #Extract from Technical Details 2
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
-                    if 'GB' in hd:
-                        return hd[:hd.find('GB')].strip()
-                    elif 'TB' in hd:
-                        return int(hd[:hd.find('TB')].strip())*1000 #GB
+                    result = ProductSpider.getSSDSizeFromString("memory"+hd)
+                    if result is not None :
+                        return result
 
             except:
                 pass
-        #Fallback
-        for tr in sel.xpath('//tr'):
-            try:
-                if tr.xpath('.//th/text()').get().strip() == "Flash Memory Size":
-                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
-                    if 'GB' in hd:
-                        return hd[:hd.find('GB')-1].strip()
-                    elif 'TB' in hd:
-                        return int(hd[:hd.find('TB')-1].strip())*1000 #GB
-                    else :
-                        return hd[:hd.find('.')]
-            except:
-                pass
+
+
         return None
+    @staticmethod
+    def getSSDSizeFromString(string) :
+        string = string.lower().replace(" ","").replace(":","").replace("_","").replace("-","")
+        #This is usually right before the size of ssd
+        string = re.sub("ddr[0-9]","",string)
+        string = string.replace("pcie","").replace("nvme","")
+
+
+        matches = re.findall("[0-9]+tbssd",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("tbssd")])*1000
+
+        matches = re.findall("[0-9]+gbssd",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("gbssd")])
+
+
+        matches = re.findall("emmc[0-9]+tb",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("emmc")+4:matches[0].find("tb")])*1000
+
+        matches = re.findall("emmc[0-9]+gb",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("emmc")+4:matches[0].find("gb")])
+
+
+        matches = re.findall("[0-9]+tbemmc",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("tbemmc")])*1000
+
+        matches = re.findall("[0-9]+gbemmc",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("gbemmc")])
+
+        matches = re.findall("[0-9]+emmc",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("emmc")])
+
+        matches = re.findall("harddrive[0-9]+tbssd",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:matches[0].find("tbssd")])*1000
+
+        matches = re.findall("harddrive[0-9]+gbssd",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:matches[0].find("gbssd")])
+
+        matches = re.findall("harddrive[0-9]+ssd",string)
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:matches[0].find("ssd")])
+
+        matches = re.findall("harddrive[0-9]+",string)
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("harddrive")+9:])
+
+        matches = re.findall("ssd[0-9]+",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("ssd")+3:])
+
+        matches = re.findall("emmc[0-9]+",string)
+
+
+        return None
+
 
     @staticmethod
     def getOperatingSystem(sel,productTitle):
@@ -490,17 +858,21 @@ class ProductSpider(scrapy.Spider):
                     return br.get().strip().title()
             except:
                 pass
+        chipsetBrand = ProductSpider.getChipsetBrand(sel, None, None)
+        if chipsetBrand is not None :
+            return chipsetBrand
         return None
 
     @staticmethod
-    def getChipsetBrand(sel, gpu):
+    def getChipsetBrand(sel, gpu,cpu):
         brands = { 'amd' : ["radeon","ryzen","amd"]
         , 'nvidia' : ["geoforce","nvidia","gtx","rtx","mx","gx"]
-        , 'arm mali' :["arm","mali"]
+        , 'arm mali' :["armmali"]
         , "mediatek" :["mediatek"]
         ,'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3"]
 
         }
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Chipset Brand":
@@ -512,16 +884,28 @@ class ProductSpider(scrapy.Spider):
                                     return brand.title()
             except:
                 pass
-        if gpu is None  :
-            return None
-
-        for brand in brands:
-            for brand_keyword in brands[brand] :
-                if brand_keyword in gpu.lower() :
-                    return brand.title()
-
+        #Extract from GPU
         if gpu is not None :
-            return gpu.title()
+            for brand in brands:
+                for brand_keyword in brands[brand] :
+                    if brand_keyword in gpu.lower() :
+                        return brand.title()
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            if bulletedItem is not None :
+                for brand in brands:
+                    for brand_keyword in brands[brand] :
+                        if brand_keyword in bulletedItem.lower() and brand_keyword != brand :
+                            return brand.title()
+        #If no GPU, and cpu is intel then GPU is intel
+        if cpu is not None and cpu.lower() == "intel" :
+            return "Intel"
+        if cpu is not None and cpu.lower() == "nvidia" :
+            return "Nvidia"
+        if cpu is not None and cpu.lower() == "amd" :
+            return "Amd"
 
         return None
 
@@ -608,29 +992,73 @@ class ProductSpider(scrapy.Spider):
         return None
 
     @staticmethod
-    def getItemWeight(sel):
+    def getItemWeight(sel,productTitle):
+
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Item Weight":
                     weight = tr.xpath('.//td/text()').get().strip()
-                    weight = float(weight[:weight.find('pounds')-1].strip())
-                    return weight
+                    result = ProductSpider.getItemWeightFromString(weight)
+                    if result is not None :
+                        return result
+                    if weight.isdigit() :
+                        return float(weight)
+            except:
+                pass
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            result = ProductSpider.getItemWeightFromString(bulletedItem)
+            if result is not None :
+                return result
+
+        #Extract from Product title
+        if productTitle is not None :
+            result = ProductSpider.getItemWeightFromString(productTitle)
+            if result is not None :
+                return result
+        #Not the best result, but that's worst case so that we dont lose the product
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip() == "Shipping Weight":
+                    weight = tr.xpath('.//td/text()').get().strip()
+                    result = ProductSpider.getItemWeightFromString(weight)
+                    if result is not None :
+                        return result
+                    if weight.isdigit() :
+                        return float(weight)
             except:
                 pass
 
         return None
 
     @staticmethod
-    def getMemoryType(sel):
-        for tr in sel.xpath('//tr'):
-            try:
-                if tr.xpath('.//th/text()').get().strip() == "Computer Memory Type":
-                    memoryType = tr.xpath('.//td/text()').get().strip()
-                    return memoryType
-            except:
-                pass
+    def getItemWeightFromString(string) :
+        string = string.lower().replace(" ","")
 
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}pounds",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("pounds")])
+
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}kg",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("kg")]) *2.2
+
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}kilograms",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("kilograms")]) *2.2
+
+        matches = re.findall("[0-9]{1,2}\.{0,1}[0-9]{0,2}grams",string)
+
+        if len(matches) >0 :
+            return float(matches[0][:matches[0].find("grams")]) *2.2
         return None
+
 
     @staticmethod
     def getAverageBatteryLife(sel):
@@ -647,20 +1075,39 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def getProductDimensions(sel):
+        possibleFieldValues = ["productdimensions","packagedimensions","itemdimensions","dimensions"]
+
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
-                if tr.xpath('.//th/text()').get().strip() == "Product Dimensions":
-                    productDimensions = tr.xpath('.//td/text()').get().strip()
-                    delim1 = productDimensions.find('x')-1
-                    delim2 = productDimensions.find('x', productDimensions.find('x')+1)
-                    productDimension_X = float(productDimensions[:delim1].strip())
-                    productDimension_Y = float(productDimensions[delim1+3:delim2-1].strip())
-                    productDimension_Z = float(productDimensions[delim2+1:productDimensions.find('inches')-1].strip())
-                    return productDimension_X, productDimension_Y, productDimension_Z
+                for possibleValue in possibleFieldValues :
+                    if possibleValue in tr.xpath('.//th/text()').get().strip().replace(" ","").lower() :
+                        productDimensions = tr.xpath('.//td/text()').get().strip().replace(" ","")
+                        delim1 = productDimensions.find('x')
+                        delim2 = productDimensions.find('x', productDimensions.find('x')+1)
+                        productDimension_X = float(productDimensions[:delim1].strip())
+                        productDimension_Y = float(productDimensions[delim1+1:delim2].strip())
+                        productDimension_Z = float(productDimensions[delim2+1:productDimensions.find('inches')].strip())
+                        if productDimension_X != 0 and productDimension_Y != 0 and productDimension_Z != 0 :
+                            return productDimension_X, productDimension_Y, productDimension_Z
             except:
                 pass
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            for possibleValue in possibleFieldValues :
+                if possibleValue in bulletedItem :
+                    productDimensions = bulletedItem
+                    delim1 = productDimensions.find('x')
+                    delim2 = productDimensions.find('x', productDimensions.find('x')+1)
+                    productDimension_X = float(productDimensions[:delim1].strip())
+                    productDimension_Y = float(productDimensions[delim1+1:delim2].strip())
+                    productDimension_Z = float(productDimensions[delim2+1:productDimensions.find('inches')].strip())
+                    if productDimension_X != 0 and productDimension_Y != 0 and productDimension_Z != 0 :
+                        return productDimension_X, productDimension_Y, productDimension_Z
 
         return None
+
 
     @staticmethod
     def getColor(sel):
@@ -697,9 +1144,10 @@ class ProductSpider(scrapy.Spider):
     #Helper method
     @staticmethod
     def extractPropertUsingKeywordsDict(valuesToKeywordsDict,toExtractString) :
+        toExtractString = toExtractString.replace("-","").replace(" ","").lower().replace("_","")
         for value in valuesToKeywordsDict :
             for keyword in valuesToKeywordsDict[value] :
-                if keyword.lower() in toExtractString.lower().replace(" ","") :
+                if keyword.lower() in toExtractString :
                     return value.title()
         return None
 
