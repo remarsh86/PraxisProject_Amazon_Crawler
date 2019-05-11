@@ -22,14 +22,14 @@ class AmazonCrawlerPipeline(object):
                   "processorType": str(item['processorType']), "processorCount": item['processorCount'], "processorBrand": str(item['processorBrand']),
                   "ram": item['ram'],"brandName": item['brandName'], "hardDriveType": item['hardDriveType'],"hddSize": item['hddSize'],"ssdSize": item['ssdSize'], "graphicsCoprocessor": str(item['graphicsCoprocessor']),
                  "chipsetBrand": str(item['chipsetBrand']), "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],
-                 "memoryType": item['memoryType'], "averageBatteryLife": item['averageBatteryLife'],
+                  "averageBatteryLife": item['averageBatteryLife'],
                  "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']) ,
                  "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
             res = es.index(index='amazon', doc_type='laptop', body=e)
             #print(res)
         except Exception as e:
             f = open("error.txt", "a+")
-            f.write("asin : "+item["asin"]+'\n'+repr(e)+"\n")
+            #f.write("asin : "+item["asin"]+'\n'+repr(e)+"\n")
             #print(repr(e))
 
 
