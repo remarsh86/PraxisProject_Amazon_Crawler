@@ -28,7 +28,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         if limit < 7000:
+         if limit < 1000:
 
              start_urls.append(
                  "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -36,7 +36,7 @@ class ProductSpider(scrapy.Spider):
          else:
              break
          limit += 1
-    #start_urls.append("file://" + os.path.realpath("product_xml_files") + "/B075TG56TT.xml")  # replace with your local path
+    #start_urls.append("file://" + os.path.realpath("product_xml_files") + "/B0774GLFCT.xml")  # replace with your local path
          #Generates a dictionary and yields it after parsing as
     def parse(self, response):
         sel = Selector(text=response.body)
@@ -304,8 +304,6 @@ class ProductSpider(scrapy.Spider):
         return None
 
 
-        return None
-
     @staticmethod
     def getRamFromString(string) :
         string = string.lower().replace(" ","")
@@ -371,9 +369,11 @@ class ProductSpider(scrapy.Spider):
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
-                        return hd[:hd.find('GB')-1].strip()
+                        #print(hd[:hd.find('GB')-1].strip())
+                        return hd[:hd.find('GB')].strip()
                     elif 'TB' in hd:
-                        return int(hd[:hd.find('TB')-1].strip())*1000 #GB
+                        #print(hd[:hd.find('TB')].strip())
+                        return int(hd[:hd.find('TB')].strip())*1000 #GB
 
             except:
                 pass
@@ -383,9 +383,9 @@ class ProductSpider(scrapy.Spider):
                 if tr.xpath('.//th/text()').get().strip() == "Flash Memory Size":
                     hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
-                        return hd[:hd.find('GB')-1].strip()
+                        return hd[:hd.find('GB')].strip()
                     elif 'TB' in hd:
-                        return int(hd[:hd.find('TB')-1].strip())*1000 #GB
+                        return int(hd[:hd.find('TB')].strip())*1000 #GB
                     else :
                         return hd[:hd.find('.')]
             except:
@@ -399,9 +399,9 @@ class ProductSpider(scrapy.Spider):
                 if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
                     hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
                     if 'GB' in hd:
-                        return hd[:hd.find('GB')-1].strip()
+                        return hd[:hd.find('GB')].strip()
                     elif 'TB' in hd:
-                        return int(hd[:hd.find('TB')-1].strip())*1000 #GB
+                        return int(hd[:hd.find('TB')].strip())*1000 #GB
 
             except:
                 pass
