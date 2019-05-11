@@ -56,8 +56,8 @@ class ProductSpider(scrapy.Spider):
         product["price"] = self.getPrice(sel)
 
         product["processorSpeed"] = self.getProcessorSpeed(sel)
-        product["processorType"] = self.getProcessorType(sel)
-        product["processorBrand"] = self.getProcessorBrand(sel,product["processorType"])
+        product["processorType"] = self.getProcessorType(sel,product["productTitle"])
+        product["processorBrand"] = self.getProcessorBrand(sel,product["processorType"],product["productTitle"])
         product["processorCount"] = self.getProcessorCount(sel)
 
 
@@ -206,56 +206,147 @@ class ProductSpider(scrapy.Spider):
         return None
 
     @staticmethod
-    def getProcessorType(sel):
+    def getProcessorType(sel,productTitle):
+        processors = { 'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86","atom","xeon"]
+        , "qualcom" : ["qualcom"]
+        , "rockchip" : ["rockchip","rock"]
+        ,'amd' : ["radeon","ryzen","amd","radion"]
+        , 'nvidia' : ["tegra"]
+        , 'arm mali' :["arm","mali"]
+        , "mediatek" :["mediatek"]
+        ,"dmx" :["dmx"]
+        , "via" :["via"]
+
+        }
+
+        result = None
+
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor":
                     processor = tr.xpath('.//td/text()').get().strip()
                     processorType = None
-                    if "GHz" in processor :
-                        processorType = processor[processor.find('GHz')+3:].strip()
-                    else :
-                        #In case it doesn't have the GHz part in the name.
-                        processorType = processor
-                    return processorType.title()
+                    if processor is not None :
+                        if "GHz" in processor :
+                            result = processor[processor.find('GHz')+3:].strip()
+                        else :
+                            #In case it doesn't have the GHz part in the name.
+                            result = processor
+
             except:
                 pass
 
+        if result is None or result.isdigit() or result.isspace():
+            #print(productTitle)
+            if productTitle is not None :
+                result = ProductSpider.getProcessorTypeFromString(productTitle)
+                if result is not None and not result.isdigit() and not result.isspace():
+                    return result
+
+            #Search in Features tab
+            for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+                bulletedItem = sentence.get().strip()
+                result = ProductSpider.getProcessorTypeFromString(bulletedItem)
+                if result is not None and not result.isdigit() and not result.isspace() :
+                    return result
+
+        for intelKeyword in processors["intel"] :
+            if result is not None and  intelKeyword in result.lower() :
+                result = ProductSpider.getNormalizedIntelProcessor(result)
+
+        if result is None or result == "None" or result.isspace():
+            result = ProductSpider.getProcessorBrand(sel,None,productTitle)
+
+        return result
+    @staticmethod
+    def getNormalizedIntelProcessor(string) :
+        result = "Intel"
+        match = re.findall("i[3|5|7]{1}",string)
+
+        if len(match) > 0 :
+            return result +" core "+match[0]
+
+        if  "intel" not in string.lower() :
+            return "Intel "+string
+
+
+    @staticmethod
+    def getProcessorTypeFromString(string) :
+        #Try 1
+        if string is not None :
+            tokens = string.split(",")
+
+            model = ""
+            brand = ""
+
+            for token in tokens :
+                #Intel ---------------
+                modelMatch = re.findall("i[3|5|7]{1}-[0-9]{4}[H|Q|U]{0,2}",token)
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model != "":
+                    model ="Intel core "+ modelMatch[0]
+                #Intel ---------------
+                modelMatch = re.findall("intel core i[3|5|7]{1}[0-9]{0,4}[h|q|u]{0,2}",token.lower())
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model == "":
+                    model = "Intel core "+modelMatch[0][modelMatch[0].find("intel core ")+11:]
+                modelMatch = re.findall("intel core i[3|5|7]{1}",token.lower())
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model == "":
+                    model = "Intel core "+modelMatch[0][modelMatch[0].find("intel core ")+11:]
+                modelMatch = re.findall("core i[3|5|7]{1}",token.lower())
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 and model == "":
+                    model = "Intel " + modelMatch[0]
+            if model == "" :
+                return None
+
+
+            return model
         return None
 
     @staticmethod
-    def getProcessorBrand(sel,processorType):
+    def getProcessorBrand(sel,processorType,productTitle):
         #This is much faster than parsing.
         processors = { 'amd' : ["radeon","ryzen","amd","radion"]
         , 'nvidia' : ["nvidia"]
         , 'arm mali' :["arm","mali"]
         , "mediatek" :["mediatek"]
-        ,'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86"]
+        ,'intel' :["hd graphics","integrated","gma","intelcore","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86"]
         ,"dmx" :["dmx"]
         , "via" :["via"]
         , "qualcom" : ["qualcom"]
         , "rockchip" : ["rockchip","rock"]
         }
 
-
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor Brand":
                     processorBrand = tr.xpath('.//td/text()').get().strip()
-                    for processor in processors :
-                        for processorKeyword in processors[processor] :
-                            if processorKeyword.lower() in processorBrand.lower() :
-                                return processor.title()
-
-                    return processorBrand.title()
+                    result = ProductSpider.extractPropertUsingKeywordsDict(processors,processorBrand)
+                    if result is not None :
+                        return result.title()
             except:
                 pass
-
+        #Extract from Processor type
         if processorType is not None :
-            for processor in processors :
-                for processorKeyword in processors[processor] :
-                    if processorKeyword.lower() in processorType.lower() :
-                        return processor.title()
+            result = ProductSpider.extractPropertUsingKeywordsDict(processors,processorType)
+            if result is not None :
+                return result.title()
+        #Extract from Product title
+        if productTitle is not None :
+            result = ProductSpider.extractPropertUsingKeywordsDict(processors,productTitle)
+            if result is not None :
+                return result.title()
+
+        #Search in Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            if bulletedItem is not None :
+                result = ProductSpider.extractPropertUsingKeywordsDict(processors,productTitle)
+                if result is not None :
+                    return result.title()
 
 
         return None
@@ -761,6 +852,10 @@ class ProductSpider(scrapy.Spider):
         #If no GPU, and cpu is intel then GPU is intel
         if cpu is not None and cpu.lower() == "intel" :
             return "Intel"
+        if cpu is not None and cpu.lower() == "nvidia" :
+            return "Nvidia"
+        if cpu is not None and cpu.lower() == "amd" :
+            return "Amd"
 
         return None
 
