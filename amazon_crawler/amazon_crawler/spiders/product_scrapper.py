@@ -78,7 +78,7 @@ class ProductSpider(scrapy.Spider):
 
 
         product["graphicsCoprocessor"] = self.getGraphicsCoprocessor(sel)
-        product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'])
+        product["chipsetBrand"] = self.getChipsetBrand(sel, product['graphicsCoprocessor'],product["processorBrand"])
 
 
         product["maxScreenResolution_X"] = self.getMaxScreenResolution_X(sel)
@@ -717,17 +717,21 @@ class ProductSpider(scrapy.Spider):
                     return br.get().strip().title()
             except:
                 pass
+        chipsetBrand = ProductSpider.getChipsetBrand(sel, None, None)
+        if chipsetBrand is not None :
+            return chipsetBrand
         return None
 
     @staticmethod
-    def getChipsetBrand(sel, gpu):
+    def getChipsetBrand(sel, gpu,cpu):
         brands = { 'amd' : ["radeon","ryzen","amd"]
         , 'nvidia' : ["geoforce","nvidia","gtx","rtx","mx","gx"]
-        , 'arm mali' :["arm","mali"]
+        , 'arm mali' :["armmali"]
         , "mediatek" :["mediatek"]
         ,'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3"]
 
         }
+        #Extract from Technical details
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Chipset Brand":
@@ -739,16 +743,24 @@ class ProductSpider(scrapy.Spider):
                                     return brand.title()
             except:
                 pass
-        if gpu is None  :
-            return None
-
-        for brand in brands:
-            for brand_keyword in brands[brand] :
-                if brand_keyword in gpu.lower() :
-                    return brand.title()
-
+        #Extract from GPU
         if gpu is not None :
-            return gpu.title()
+            for brand in brands:
+                for brand_keyword in brands[brand] :
+                    if brand_keyword in gpu.lower() :
+                        return brand.title()
+
+        #Extract from Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip().lower().replace(" ","")
+            if bulletedItem is not None :
+                for brand in brands:
+                    for brand_keyword in brands[brand] :
+                        if brand_keyword in bulletedItem.lower() and brand_keyword != brand :
+                            return brand.title()
+        #If no GPU, and cpu is intel then GPU is intel
+        if cpu is not None and cpu.lower() == "intel" :
+            return "Intel"
 
         return None
 
