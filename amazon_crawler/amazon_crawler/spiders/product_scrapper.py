@@ -381,7 +381,7 @@ class ProductSpider(scrapy.Spider):
 
     @staticmethod
     def isSsd(sel,productTitle) :
-        keywords = {"SSD" :["ssd","flash","solidstate","emmc"]}
+        keywords = {"SSD" :["ssd","flash","solidstate","emmc","nvme","pcie"]}
         #Extract from Product title
         if productTitle is not None :
             result = ProductSpider.extractPropertUsingKeywordsDict(keywords, productTitle)
@@ -432,18 +432,6 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getHddSize(sel,productTitle):
 
-        #Extract from Technical Details
-        for tr in sel.xpath('//tr'):
-            try:
-                if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
-                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
-                    result = ProductSpider.getHDDSizeFromString("harddrive"+hd)
-                    if result is not None :
-                        return result
-
-            except:
-                pass
-
         #Extract from Proudct title
         if productTitle is not None :
             result = ProductSpider.getHDDSizeFromString(productTitle)
@@ -457,6 +445,20 @@ class ProductSpider(scrapy.Spider):
             if result is not None :
                 return result
 
+        #Extract from Technical Details
+        for tr in sel.xpath('//tr'):
+            try:
+                if tr.xpath('.//th/text()').get().strip() == "Hard Drive":
+                    hd = tr.xpath('.//td/text()').get().strip().replace(" ","")
+                    result = ProductSpider.getHDDSizeFromString("harddrive"+hd)
+                    if result is not None :
+                        return result
+
+            except:
+                pass
+
+
+
         return None
 
     @staticmethod
@@ -464,7 +466,9 @@ class ProductSpider(scrapy.Spider):
 
         string = string.lower().replace(" ","").replace(":","").replace("_","").replace("-","")
 
+        string = re.sub("ddr[0-9]","",string)
         matches = re.findall("[0-9]+tbhdd",string)
+
 
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("tbhdd")])*1000
@@ -573,7 +577,9 @@ class ProductSpider(scrapy.Spider):
     def getSSDSizeFromString(string) :
         string = string.lower().replace(" ","").replace(":","").replace("_","").replace("-","")
         #This is usually right before the size of ssd
-        string = string.replace("ddr4","")
+        string = re.sub("ddr[0-9]","",string)
+        string = string.replace("pcie","").replace("nvme","")
+
 
         matches = re.findall("[0-9]+tbssd",string)
 
@@ -585,16 +591,6 @@ class ProductSpider(scrapy.Spider):
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("gbssd")])
 
-        matches = re.findall("memory[0-9]+",string)
-
-        if len(matches) >0 :
-            return float(matches[0][matches[0].find("memory")+6:])
-
-
-        matches = re.findall("ssd[0-9]+",string)
-
-        if len(matches) >0 :
-            return float(matches[0][matches[0].find("ssd"):])
 
         matches = re.findall("emmc[0-9]+tb",string)
 
@@ -606,10 +602,6 @@ class ProductSpider(scrapy.Spider):
         if len(matches) >0 :
             return float(matches[0][matches[0].find("emmc")+4:matches[0].find("gb")])
 
-        matches = re.findall("emmc[0-9]+",string)
-
-        if len(matches) >0 :
-            return float(matches[0][matches[0].find("memory")+6:])
 
         matches = re.findall("[0-9]+tbemmc",string)
 
@@ -643,6 +635,14 @@ class ProductSpider(scrapy.Spider):
         matches = re.findall("harddrive[0-9]+",string)
         if len(matches) >0 :
             return float(matches[0][matches[0].find("harddrive")+9:])
+
+        matches = re.findall("ssd[0-9]+",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("ssd")+3:])
+
+        matches = re.findall("emmc[0-9]+",string)
+
 
         return None
 
