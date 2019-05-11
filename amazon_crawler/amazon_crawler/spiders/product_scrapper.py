@@ -464,11 +464,6 @@ class ProductSpider(scrapy.Spider):
 
         string = string.lower().replace(" ","").replace(":","").replace("_","").replace("-","")
 
-        matches = re.findall("memory[0-9]+",string)
-
-        if len(matches) >0 :
-            return float(matches[0][matches[0].find("memory")+6:])
-
         matches = re.findall("[0-9]+tbhdd",string)
 
         if len(matches) >0 :
@@ -478,6 +473,11 @@ class ProductSpider(scrapy.Spider):
 
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("gbhdd")])
+
+        matches = re.findall("memory[0-9]+",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("memory")+6:])
 
 
         matches = re.findall("hdd[0-9]+tb",string)
@@ -572,11 +572,8 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getSSDSizeFromString(string) :
         string = string.lower().replace(" ","").replace(":","").replace("_","").replace("-","")
-
-        matches = re.findall("memory[0-9]+",string)
-
-        if len(matches) >0 :
-            return float(matches[0][matches[0].find("memory")+6:])
+        #This is usually right before the size of ssd
+        string = string.replace("ddr4","")
 
         matches = re.findall("[0-9]+tbssd",string)
 
@@ -587,6 +584,11 @@ class ProductSpider(scrapy.Spider):
 
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("gbssd")])
+
+        matches = re.findall("memory[0-9]+",string)
+
+        if len(matches) >0 :
+            return float(matches[0][matches[0].find("memory")+6:])
 
 
         matches = re.findall("ssd[0-9]+",string)
