@@ -55,7 +55,7 @@ class ProductSpider(scrapy.Spider):
 
         product["price"] = self.getPrice(sel)
 
-        product["processorSpeed"] = self.getProcessorSpeed(sel)
+        product["processorSpeed"] = self.getProcessorSpeed(sel,product["productTitle"])
         product["processorType"] = self.getProcessorType(sel,product["productTitle"])
         product["processorBrand"] = self.getProcessorBrand(sel,product["processorType"],product["productTitle"])
         product["processorCount"] = self.getProcessorCount(sel)
@@ -192,21 +192,71 @@ class ProductSpider(scrapy.Spider):
 
 
     @staticmethod
-    def getProcessorSpeed(sel):
+    def getProcessorSpeed(sel,productTitle):
+
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Processor":
                     processor = tr.xpath('.//td/text()').get().strip()
-                    processorSpeed = float(processor[:processor.find('GHz')].strip())       # GHz
-                    return processorSpeed
+                    if "ghz" in processor.lower() :
+                        processorSpeed = float(processor[:processor.find('GHz')].strip())       # GHz
+                        return processorSpeed
             except:
                 pass
 
+        if productTitle is not None :
+            result = ProductSpider.getProcessorSpeedFromString(productTitle)
+            if result is not None and result != "None" and not result.isspace() :
+                return result
+
+        #Search in Features tab
+        for sentence in sel.xpath('//span[@class="a-list-item"]/text()') :
+            bulletedItem = sentence.get().strip()
+            result = ProductSpider.getProcessorSpeedFromString(bulletedItem)
+            if result is not None and result != "None" and not result.isspace() :
+                return result
 
         return None
 
     @staticmethod
+    def getProcessorSpeedFromString(string) :
+        if string is not None :
+            tokens = string.split(",")
+
+            for token in tokens :
+                #Intel ---------------
+                modelMatch = re.findall("i[3|5|7]{1}-[0-9]{4}[h|q|u]{0,2}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                #Intel ---------------
+                modelMatch = re.findall("intelcorei[3|5|7]{1}[0-9]{0,4}[h|q|u]{0,2}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("intelcorei[3|5|7]{1}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("corei[3|5|7]{1}[0-9]{1}\.[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][modelMatch[0].find(".")-1:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("[0-9]{1}\.[0-9]{1,2}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][:modelMatch[0].find("ghz")]
+                modelMatch = re.findall("[0-9]{1}ghz",token.lower().replace(" ",""))
+                #speedMatch = re.findall("[0-9]{1}\.[0-9]{0,1}ghz",token.replace(" ","").lower())
+                if len(modelMatch) > 0 :
+                    return modelMatch[0][:modelMatch[0].find("ghz")]
+
+        return None
+
+
+    @staticmethod
     def getProcessorType(sel,productTitle):
+
         processors = { 'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86","atom","xeon"]
         , "qualcom" : ["qualcom"]
         , "rockchip" : ["rockchip","rock"]
@@ -218,7 +268,6 @@ class ProductSpider(scrapy.Spider):
         , "via" :["via"]
 
         }
-
         result = None
 
         for tr in sel.xpath('//tr'):
@@ -256,6 +305,7 @@ class ProductSpider(scrapy.Spider):
 
         if result is None or result == "None" or result.isspace():
             result = ProductSpider.getProcessorBrand(sel,None,productTitle)
+
 
         return result
     @staticmethod
@@ -308,15 +358,16 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getProcessorBrand(sel,processorType,productTitle):
         #This is much faster than parsing.
-        processors = { 'amd' : ["radeon","ryzen","amd","radion"]
-        , 'nvidia' : ["nvidia"]
-        , 'arm mali' :["arm","mali"]
-        , "mediatek" :["mediatek"]
-        ,'intel' :["hd graphics","integrated","gma","intelcore","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86"]
-        ,"dmx" :["dmx"]
-        , "via" :["via"]
+        processors = { 'intel' :["hd graphics","integrated","gma","520","620","500","intel","hd_graphics","graphics","hd","i7","i5","i3","celeron","pentium","x86","atom","xeon"]
         , "qualcom" : ["qualcom"]
         , "rockchip" : ["rockchip","rock"]
+        ,'amd' : ["radeon","ryzen","amd","radion"]
+        , 'nvidia' : ["tegra"]
+        , 'arm mali' :["arm","mali"]
+        , "mediatek" :["mediatek"]
+        ,"dmx" :["dmx"]
+        , "via" :["via"]
+
         }
 
         #Extract from Technical details
@@ -392,9 +443,6 @@ class ProductSpider(scrapy.Spider):
 
         return None
 
-
-        return None
-
     @staticmethod
     def getRamFromString(string) :
         string = string.lower().replace(" ","")
@@ -405,22 +453,24 @@ class ProductSpider(scrapy.Spider):
             return int(matches[0][matches[0].find("ram:")+4:])
         return None
 
-        matches = re.findall("ram:[0-9]gbram",string)
+
+
+        matches = re.findall("[0-9]+gbram",string)
 
         if len(matches) >0 :
-            return int(matches[0][:matches[0].find("gbram:")])
-        return None
+            return int(matches[0][:matches[0].find("gbram")])
 
-        matches = re.findall("ram:[0-9]ram",string)
 
-        if len(matches) >0 :
-            return int(matches[0][:matches[0].find("ram:")])
-        return None
 
-        matches = re.findall("ram:[0-9]tbram",string)
+        matches = re.findall("[0-9]+gbsdram",string)
 
         if len(matches) >0 :
-            return int(matches[0][:matches[0].find("gbram:")])*1000
+            return int(matches[0][:matches[0].find("gbsdram")])
+
+        matches = re.findall("[0-9]+gbddr",string)
+
+        if len(matches) >0 :
+            return int(matches[0][:matches[0].find("gbddr")])
         return None
 
     @staticmethod
