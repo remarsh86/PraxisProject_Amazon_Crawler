@@ -426,12 +426,12 @@ class ProductSpider(scrapy.Spider):
         if len(matches) >0 :
             return float(matches[0][matches[0].find("memory")+6:])
 
-        matches = re.findall("[0-9]tbhdd",string)
+        matches = re.findall("[0-9]+tbhdd",string)
 
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("tbhdd")])*1000
 
-        matches = re.findall("[0-9]gbhdd",string)
+        matches = re.findall("[0-9]+gbhdd",string)
 
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("gbhdd")])
@@ -496,14 +496,15 @@ class ProductSpider(scrapy.Spider):
         if len(matches) >0 :
             return float(matches[0][matches[0].find("memory")+6:])
 
-        matches = re.findall("[0-9]tbssd",string)
+        matches = re.findall("[0-9]+tbssd",string)
 
         if len(matches) >0 :
             return float(matches[0][:matches[0].find("tbssd")])*1000
 
-        matches = re.findall("[0-9]gbssd",string)
+        matches = re.findall("[0-9]+gbssd",string)
 
         if len(matches) >0 :
+            print(matches[0],"       asdads  ",matches[0][:matches[0].find("gbssd")])
             return float(matches[0][:matches[0].find("gbssd")])
 
         matches = re.findall("harddrive[0-9]+",string)
