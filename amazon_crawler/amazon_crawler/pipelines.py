@@ -32,7 +32,8 @@ class AmazonCrawlerPipeline(object):
                   "screenResoultionSize": (int(item['maxScreenResolution_X']), int(item['maxScreenResolution_Y'])), "processorSpeed": float(item['processorSpeed']),
                   "processorType": item['processorType'], "processorCount": float(item['processorCount']), "brand": item['processorBrand'],
                   "ram": item['ram'], "hardDrive": item['hardDrive']}
-            res = es.index(index='testxy', doc_type='xy', body=e)
+            #res = es.index(index='amazon', doc_type='xy', body=e)
+            res = es.index(index='amazon', body=e)
             print(res)
         except Exception as e:
             #self.conn.rollback()
