@@ -26,8 +26,10 @@ class AmazonCrawlerPipeline(object):
                       "averageBatteryLife": item['averageBatteryLife'],
                      "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']) ,
                      "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
+
                 res = es.index(index='amazon', doc_type='laptop', body=e)
-            #print(res)
+
+                print(res)
         except Exception as e:
             f = open("error.txt", "a+")
             #f.write("asin : "+item["asin"]+'\n'+repr(e)+"\n")
