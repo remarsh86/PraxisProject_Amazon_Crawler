@@ -28,14 +28,14 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         if limit < 1000:
+         # if limit < 1000:
 
              start_urls.append(
                  "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
 
-         else:
-             break
-         limit += 1
+         # else:
+         #     break
+         # limit += 1
     #start_urls.append("file://" + os.path.realpath("product_xml_files") + "/B0774GLFCT.xml")  # replace with your local path
          #Generates a dictionary and yields it after parsing as
     def parse(self, response):
