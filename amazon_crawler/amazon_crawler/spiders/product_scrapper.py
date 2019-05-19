@@ -36,7 +36,7 @@ class ProductSpider(scrapy.Spider):
          # else:
          #     break
          # limit += 1
-         #
+
 
          start_urls.append(
              "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -100,16 +100,13 @@ class ProductSpider(scrapy.Spider):
             product["productDimension_Z"] = prodDimensions[2]
 
         product["color"] = self.getColor(sel)
-        product["imagePath"] = self.downloadImage(sel)
+        product["imagePath"] = self.getImage(sel)
         product["avgRating"] = self.getAvgRating(sel)
 
         #print("Product", product)
         yield product
 
-    @staticmethod
-    def downloadImage(sel):
-        path = sel.xpath('//img/@data-old-hires').get()
-        return path
+
 
     @staticmethod
     def writeXML(sel, asin):
@@ -1128,10 +1125,20 @@ class ProductSpider(scrapy.Spider):
         return None
 
     @staticmethod
-    def getImage(downloadedImage):
-        imageDownloaded = downloadedImage
-        if(imageDownloaded):
+    def getImage(sel):
+        imageDownloaded = sel.xpath('//img/@data-old-hires').get()
+        if imageDownloaded:
             return imageDownloaded
+        else:
+            imageDownloaded = sel.xpath('//img/@data-a-dynamic-image').get()
+            matches = re.finditer("https.*?\.jpg", imageDownloaded)
+            return(matches.__next__().group())
+        return None
+
+    @staticmethod
+    def downloadImage(sel):
+        path = sel.xpath('//img/@data-old-hires').get()
+        return path
 
     @staticmethod
     def getAvgRating(sel):
