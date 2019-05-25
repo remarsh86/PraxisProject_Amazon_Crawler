@@ -28,7 +28,7 @@ class AmazonCrawlerPipeline(object):
                      "productDimension": (item['productDimension_X'], item['productDimension_Y'], item['productDimension_Z']) ,
                      "color": item['color'], "imagePath": item['imagePath'], "avgRating": item['avgRating']}
 
-                res = es.index(index='amazon', doc_type='laptop', body=e)
+                res = es.index(index='amazontest', doc_type='laptop', body=e)
 
                 print(res)
         except Exception as e:

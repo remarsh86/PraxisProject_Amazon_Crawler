@@ -28,7 +28,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         # if limit < 1000:
+         # if limit < 100:
          #
          #     start_urls.append(
          #         "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -48,6 +48,8 @@ class ProductSpider(scrapy.Spider):
         product["asin"] = self.getASIN(sel)
 
         product["productTitle"] = self.getProductTitle(sel)
+
+        result = self.getDisplayTechnology(sel, product["productTitle"])
 
         product["screenSize"] = self.getScreenSize(sel,product["productTitle"])
         product["ram"] = self.getRAM(sel,product["productTitle"])
@@ -133,6 +135,7 @@ class ProductSpider(scrapy.Spider):
 
         result = None
         #Search in Technical details 1
+
         for tr in sel.xpath('//tr'):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Screen Size" or tr.xpath('.//th/span/text()').get().strip() == "Screen Size" :
@@ -188,8 +191,57 @@ class ProductSpider(scrapy.Spider):
         if len(matches) >0 :
             return float(matches[0][:matches[0].find('in')])
 
+    @staticmethod
+    def getDisplayTechnology(sel, productTitle):
+        # Search in Product title
+        result = []
+        if productTitle is not None:
+            result = ProductSpider.getDisplayTechnologyFromString(productTitle)
+            if result is not None:
+                print(result)
+                return result
+
+        #Search in Product Description
+
+        #for p in sel.xpath('//div[@id="productDescription"]/p'):
+        for p in sel.xpath('//div[@id="productDescription"]/p/br/text()').get():
+            try:
+                if p.xpath('.//text()').get().strip() == "Graphics:":
+                    print("test1!!!!!!!!!!!!!!!!!")
+            except:
+                pass
+
+        # for p in sel.xpath('//div[@id="productDescription"]/p'):
+        for p in sel.xpath('//div[@id="productDescription"]/p/br/text()').get():
+            print("test2!!!!!!!!!!!!!!")
 
 
+        for br in sel.xpath(
+                '//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
+            try:
+                print("wooooooooooo")
+            except:
+                pass
+        result = ProductSpider.getDisplayTechnologyFromString()
+
+        # search then in the pruduct description
+        for p in sel.xpath('//div[@id="productDescription"]/p/b'):
+            try:
+                if p.xpath('.//text()').get().strip() == "Graphics:":
+                    print("WOOOOOOOOOO")
+            except:
+                pass
+
+        return None
+
+    @staticmethod
+    def getDisplayTechnologyFromString(string):
+        string = string.lower().replace(" ", "")
+        matches = re.findall("led|backlit|lcd | multi-touch|multitouch|touchscreen|touch screen", string)
+        #matches = re.findall("multi-touch|touchscreen", string)
+        matches = list(dict.fromkeys(matches)) #Remove duplicates of strings
+        print("laptop display: !!!!!!!!!!!!!!!!!!!!!!")
+        return matches
 
     @staticmethod
     def getProcessorSpeed(sel,productTitle):
