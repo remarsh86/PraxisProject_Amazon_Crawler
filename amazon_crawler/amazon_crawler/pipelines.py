@@ -20,7 +20,9 @@ class AmazonCrawlerPipeline(object):
             #changed "screenResoultionSize" to displayResolutionSize, "processorBrand" to processorManufacturer, "displaySize" to screenSize
             if item["productTitle"] != "None" and item["price"] != "None"  and item['processorBrand'] != "None" and item['brandName'] != "None" and item['chipsetBrand'] != "None" and item['hardDriveType'] != "None" :
                 e = {"asin": item["asin"], "productTitle": str(item["productTitle"]), "price": float(item["price"]), "screenSize": item['screenSize'],
-                      "displayResolutionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']), "processorSpeed": item['processorSpeed'],
+                      "displayResolutionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']),
+                     #"displayTechnology": item['displayTechnolgy'],
+                     "processorSpeed": item['processorSpeed'],
                       "processorType": str(item['processorType']), "processorCount": item['processorCount'], "processorManufacturer": str(item['processorBrand']),
                       "ram": item['ram'],"brandName": str(item['brandName']), "hardDriveType": item['hardDriveType'],"hddSize": item['hddSize'],"ssdSize": item['ssdSize'], "graphicsCoprocessor": str(item['graphicsCoprocessor']),
                      "chipsetBrand": str(item['chipsetBrand']), "operatingSystem": item['operatingSystem'], "itemWeight": item['itemWeight'],

@@ -31,6 +31,8 @@ class AmazonScrapItem(scrapy.Item):
     screenSize = scrapy.Field()
     maxScreenResolution_X = scrapy.Field()
     maxScreenResolution_Y = scrapy.Field()
+
+    #displayTechnology = scrapy.Field()
     
     averageBatteryLife = scrapy.Field()
 

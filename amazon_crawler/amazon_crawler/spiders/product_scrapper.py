@@ -50,6 +50,7 @@ class ProductSpider(scrapy.Spider):
         product["productTitle"] = self.getProductTitle(sel)
 
         result = self.getDisplayTechnology(sel, product["productTitle"])
+        #product["displayTechnology"]= result
 
         product["screenSize"] = self.getScreenSize(sel,product["productTitle"])
         product["ram"] = self.getRAM(sel,product["productTitle"])
@@ -198,39 +199,31 @@ class ProductSpider(scrapy.Spider):
         if productTitle is not None:
             result = ProductSpider.getDisplayTechnologyFromString(productTitle)
             if result is not None:
-                print(result)
-                return result
+                # print(result)
+                if len(result)!=0:
+                    return result
 
         #Search in Product Description
+        for br in sel.xpath('//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
+            #print("in getDisplayTechnology().........................")
+            # print(br)
+            if len(result) !=0:
+                try:
+                    # print(br.get().lower())
+                    result = ProductSpider.getDisplayTechnologyFromString(br.get().lower())
+                except:
+                    pass
 
+        #why does the following not work....
         #for p in sel.xpath('//div[@id="productDescription"]/p'):
-        for p in sel.xpath('//div[@id="productDescription"]/p/br/text()').get():
-            try:
-                if p.xpath('.//text()').get().strip() == "Graphics:":
-                    print("test1!!!!!!!!!!!!!!!!!")
-            except:
-                pass
-
-        # for p in sel.xpath('//div[@id="productDescription"]/p'):
-        for p in sel.xpath('//div[@id="productDescription"]/p/br/text()').get():
-            print("test2!!!!!!!!!!!!!!")
+        # for p in sel.xpath('//div[@id=“productDescription”]/p/text()'):
+        #     print("test1!!!!!!!!!!!!!!!!!")
 
 
-        for br in sel.xpath(
-                '//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
-            try:
-                print("wooooooooooo")
-            except:
-                pass
-        result = ProductSpider.getDisplayTechnologyFromString()
+        # for p in sel.xpath('//div[@id=“productDescription”]//*'):
+        #     print("test2!!!!!!!!!!!!!!!!!")
+        #     print(p)
 
-        # search then in the pruduct description
-        for p in sel.xpath('//div[@id="productDescription"]/p/b'):
-            try:
-                if p.xpath('.//text()').get().strip() == "Graphics:":
-                    print("WOOOOOOOOOO")
-            except:
-                pass
 
         return None
 
@@ -240,7 +233,7 @@ class ProductSpider(scrapy.Spider):
         matches = re.findall("led|backlit|lcd | multi-touch|multitouch|touchscreen|touch screen", string)
         #matches = re.findall("multi-touch|touchscreen", string)
         matches = list(dict.fromkeys(matches)) #Remove duplicates of strings
-        print("laptop display: !!!!!!!!!!!!!!!!!!!!!!")
+        #print("laptop display: !!!!!!!!!!!!!!!!!!!!!!")
         return matches
 
     @staticmethod
@@ -896,8 +889,11 @@ class ProductSpider(scrapy.Spider):
 
         #search then in the pruduct description
         for p in sel.xpath('//div[@id="productDescription"]/p/b'):
+
             try:
                 if p.xpath('.//text()').get().strip() == "Graphics:":
+                    # print("in getGraphicsCoprocessor2.........................")
+                    #print(p)
                     gc = p.xpath(".//following-sibling::text()[1]").get().strip()
                     return gc.title()
             except:
@@ -905,6 +901,8 @@ class ProductSpider(scrapy.Spider):
 
         #keep searching the descriptipn box
         for br in sel.xpath('//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
+            #print("in getGraphicsCoprocessor3.........................")
+            #print(br)
             try:
                 if 'graphics' in br.get().lower():
                     return br.get().strip().title()
