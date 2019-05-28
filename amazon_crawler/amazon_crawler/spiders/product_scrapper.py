@@ -142,19 +142,14 @@ class ProductSpider(scrapy.Spider):
     def getRatingCount(sel):
         count =[]
         for x in sel.xpath('//span[@class="a-size-base"]/text()'):
-            #print(x)
             item = x.get().strip()
-            #item = item.lower().replace(" ", "")
             item = item.lower()
-            print(item)
-            #regx = re.compile(item)
 
             if re.search("customer|review", item,flags =0) is not None:
-                print("inside re.search....")
                 if re.findall("[0-9]{1,3}", item, flags =0) is not None:
                     count = re.findall("[0-9]{1,3}", item)
-                    print("!!!!!")
-                    print(count)
+                    # print("!!!!!")
+                    # print(count)
 
         if len(count)>0 :
             print(count[len(count)-1])
