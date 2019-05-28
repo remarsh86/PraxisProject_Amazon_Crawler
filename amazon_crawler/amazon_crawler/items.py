@@ -5,6 +5,7 @@ class AmazonScrapItem(scrapy.Item):
     asin = scrapy.Field()
     itemWeight = scrapy.Field()
     avgRating = scrapy.Field()
+    ratingCount = scrapy.Field()
 
     productTitle = scrapy.Field()
 
@@ -32,7 +33,8 @@ class AmazonScrapItem(scrapy.Item):
     maxScreenResolution_X = scrapy.Field()
     maxScreenResolution_Y = scrapy.Field()
 
-    #displayTechnology = scrapy.Field()
+    touchscreenTechnology = scrapy.Field()
+    displayLighting = scrapy.Field()
     
     averageBatteryLife = scrapy.Field()
 

@@ -49,8 +49,12 @@ class ProductSpider(scrapy.Spider):
 
         product["productTitle"] = self.getProductTitle(sel)
 
-        result = self.getDisplayTechnology(sel, product["productTitle"])
-        #product["displayTechnology"]= result
+        result = self.getTouchscreenTechnology(sel, product["productTitle"])
+        product["touchscreenTechnology"]= result[0]
+        print(result[0])
+        result = self.getDisplayTechnology(sel, product["productTitle"],"led|backlit|lcd ")
+        product["displayLighting"] = result[0]
+        print(result[0])
 
         product["screenSize"] = self.getScreenSize(sel,product["productTitle"])
         product["ram"] = self.getRAM(sel,product["productTitle"])
@@ -105,6 +109,8 @@ class ProductSpider(scrapy.Spider):
         product["color"] = self.getColor(sel)
         product["imagePath"] = self.getImage(sel)
         product["avgRating"] = self.getAvgRating(sel)
+        product["ratingCount"] = self.getRatingCount(sel)
+
 
         #print("Product", product)
         yield product
@@ -130,6 +136,42 @@ class ProductSpider(scrapy.Spider):
     def getProductTitle(sel):
         productTitle = sel.xpath('//span[@id="productTitle"]/text()').get().strip()
         return productTitle
+
+
+    @staticmethod
+    def getRatingCount(sel):
+        count =[]
+        for x in sel.xpath('//span[@class="a-size-base"]/text()'):
+            #print(x)
+            item = x.get().strip()
+            #item = item.lower().replace(" ", "")
+            item = item.lower()
+            print(item)
+            #regx = re.compile(item)
+
+            if re.search("customer|review", item,flags =0) is not None:
+                print("inside re.search....")
+                if re.findall("[0-9]{1,3}", item, flags =0) is not None:
+                    count = re.findall("[0-9]{1,3}", item)
+                    print("!!!!!")
+                    print(count)
+
+        if len(count)>0 :
+            print(count[len(count)-1])
+            countNum = count[len(count)-1]
+            return int(countNum)
+        else:
+            return 0
+
+
+
+        #todo:
+        #get number with regex.  teh matching phrases are data = '\n    19 answered questions\n '
+        # data = '5 customer review'
+        #print(x.xpath('.data').get() )
+
+
+
 
     @staticmethod
     def getScreenSize(sel,productTitle):
@@ -193,11 +235,11 @@ class ProductSpider(scrapy.Spider):
             return float(matches[0][:matches[0].find('in')])
 
     @staticmethod
-    def getDisplayTechnology(sel, productTitle):
+    def getDisplayTechnology(sel, productTitle, regexString):
         # Search in Product title
         result = []
         if productTitle is not None:
-            result = ProductSpider.getDisplayTechnologyFromString(productTitle)
+            result = ProductSpider.getDisplayTechnologyFromString(productTitle, regexString)
             if result is not None:
                 # print(result)
                 if len(result)!=0:
@@ -207,12 +249,16 @@ class ProductSpider(scrapy.Spider):
         for br in sel.xpath('//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
             #print("in getDisplayTechnology().........................")
             # print(br)
-            if len(result) !=0:
-                try:
-                    # print(br.get().lower())
-                    result = ProductSpider.getDisplayTechnologyFromString(br.get().lower())
-                except:
-                    pass
+
+            try:
+                # print(br.get().lower())
+                result = ProductSpider.getDisplayTechnologyFromString(br.get().lower(), regexString)
+                if result is not None:
+                    # print(result)
+                    if len(result) != 0:
+                        return result
+            except:
+                pass
 
         #why does the following not work....
         #for p in sel.xpath('//div[@id="productDescription"]/p'):
@@ -225,13 +271,55 @@ class ProductSpider(scrapy.Spider):
         #     print(p)
 
 
-        return None
+        return [""]
 
     @staticmethod
-    def getDisplayTechnologyFromString(string):
+    def getTouchscreenTechnology(sel, productTitle):
+        regexString = 'multi-touch|multitouch|touchscreen|touch screen'
+        # Search in Product title
+        result = []
+        if productTitle is not None:
+            result = ProductSpider.getDisplayTechnologyFromString(productTitle, regexString)
+            if result is not None:
+                # print(result)
+                if len(result) != 0:
+                    if result[0][0] == 'm':  # get the first character from the first item in the list
+                        return ["multitouch"]
+                    else:
+                        return["touchscreen"]
+
+        # Search in Product Description
+        for br in sel.xpath(
+                '//div[@id="productDescription"]/p/text()[preceding-sibling::br and following-sibling::br]'):
+            # print("in getDisplayTechnology().........................")
+            # print(br)
+
+            try:
+                # print(br.get().lower())
+                result = ProductSpider.getDisplayTechnologyFromString(br.get().lower(), regexString)
+                if result is not None:
+                    # print(result)
+                    if len(result) != 0:
+                        return result
+            except:
+                pass
+
+        # why does the following not work....
+        # for p in sel.xpath('//div[@id="productDescription"]/p'):
+        # for p in sel.xpath('//div[@id=“productDescription”]/p/text()'):
+        #     print("test1!!!!!!!!!!!!!!!!!")
+
+        # for p in sel.xpath('//div[@id=“productDescription”]//*'):
+        #     print("test2!!!!!!!!!!!!!!!!!")
+        #     print(p)
+
+        return [""]
+
+    @staticmethod
+    def getDisplayTechnologyFromString(string, regexString):
         string = string.lower().replace(" ", "")
-        matches = re.findall("led|backlit|lcd | multi-touch|multitouch|touchscreen|touch screen", string)
-        #matches = re.findall("multi-touch|touchscreen", string)
+        #matches = re.findall("led|backlit|lcd | multi-touch|multitouch|touchscreen|touch screen", string)
+        matches = re.findall(regexString, string)
         matches = list(dict.fromkeys(matches)) #Remove duplicates of strings
         #print("laptop display: !!!!!!!!!!!!!!!!!!!!!!")
         return matches
@@ -857,7 +945,10 @@ class ProductSpider(scrapy.Spider):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
                     os = tr.xpath('.//td/text()').get().strip()
+                    print("os........")
+                    # print(os)
                     result = ProductSpider.extractPropertUsingKeywordsDict(operatingSystemsDict,os)
+                    print(result)
                     if result is not None :
                         return result.title()
             except:
@@ -1207,7 +1298,7 @@ class ProductSpider(scrapy.Spider):
         toExtractString = toExtractString.replace("-","").replace(" ","").lower().replace("_","")
         for value in valuesToKeywordsDict :
             for keyword in valuesToKeywordsDict[value] :
-                if keyword.lower() in toExtractString :
+                if keyword.lower().replace(" ","") in toExtractString :
                     return value.title()
         return None
 
