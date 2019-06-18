@@ -28,7 +28,7 @@ class ProductSpider(scrapy.Spider):
 
     for file in os.listdir("product_xml_files"):
 
-         # if limit < 100:
+         # if limit < 1000:
          #
          #     start_urls.append(
          #         "file://" + os.path.realpath("product_xml_files") + "/" + str(file))  # replace with your local path
@@ -51,10 +51,9 @@ class ProductSpider(scrapy.Spider):
 
         result = self.getTouchscreenTechnology(sel, product["productTitle"])
         product["touchscreenTechnology"]= result[0]
-        print(result[0])
+
         result = self.getDisplayTechnology(sel, product["productTitle"],"led|backlit|lcd ")
         product["displayLighting"] = result[0]
-        print(result[0])
 
         product["screenSize"] = self.getScreenSize(sel,product["productTitle"])
         product["ram"] = self.getRAM(sel,product["productTitle"])
@@ -152,7 +151,7 @@ class ProductSpider(scrapy.Spider):
                     # print(count)
 
         if len(count)>0 :
-            print(count[len(count)-1])
+            # print(count[len(count)-1])
             countNum = count[len(count)-1]
             return int(countNum)
         else:
@@ -940,10 +939,9 @@ class ProductSpider(scrapy.Spider):
             try:
                 if tr.xpath('.//th/text()').get().strip() == "Operating System":
                     os = tr.xpath('.//td/text()').get().strip()
-                    print("os........")
                     # print(os)
                     result = ProductSpider.extractPropertUsingKeywordsDict(operatingSystemsDict,os)
-                    print(result)
+                    # print(result)
                     if result is not None :
                         return result.title()
             except:
@@ -1057,7 +1055,10 @@ class ProductSpider(scrapy.Spider):
     @staticmethod
     def getBrandName(sel, productTitle):
         brandsList =["Dell", "HP", "Lenovo", "Acer", "Asus", "Apple", "Samsung", "MSI", "Alienware", "Razer", "Huawai", "LG",
-                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan","Google","Microsoft"]
+                 "Hyundai", "Latitude","PANASONIC", "XPS", "jumper", "Notebook flexx", "Proscan","Google","Microsoft", "Aventis systems",
+                 "Computer upgrade king","CTL", "Eluktronics", "EXcaliberPC", "Fujitsu", "Gateway", "Generic", "Gigabyte",
+                 "HEWLETT PACKARD", "HIDevolution", "IBM", "ME2 MichaelElectronics2", "MerkAmerica", "PROSTAR", "Quality Refurbished Computers",
+                 "RCA", "Sager", "Sony", "Toshiba", "Toughbook", "XOTIC PC"]
 
 
         #Extract from Technical details
