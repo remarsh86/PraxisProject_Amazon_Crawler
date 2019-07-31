@@ -18,7 +18,7 @@ class AmazonCrawlerPipeline(object):
             #self.conn.commit()
             #print("Inserted into Test Database!")
             #changed "screenResoultionSize" to displayResolutionSize, "processorBrand" to processorManufacturer, "displaySize" to screenSize
-            if item["productTitle"] != "None" and item["price"] != "None"  and item['processorBrand'] != "None" and item['brandName'] != "None" and item['chipsetBrand'] != "None" and item['hardDriveType'] != "None" :
+            if item["productTitle"] != None and item["price"] != None  and item['processorBrand'] != None and item['brandName'] != None and item['chipsetBrand'] != None and item['hardDriveType'] != None and item['ram'] != None :
                 e = {"asin": item["asin"], "productTitle": str(item["productTitle"]), "price": float(item["price"]), "screenSize": item['screenSize'],
                       "displayResolutionSize": (item['maxScreenResolution_X'], item['maxScreenResolution_Y']),
                      "touchscreenTechnology" : item["touchscreenTechnology"],"displayLighting" : item["displayLighting"],
