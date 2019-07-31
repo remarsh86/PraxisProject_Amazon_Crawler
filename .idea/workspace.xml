@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ddb59c87-995d-4c72-b1d3-091cf75557dd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon_crawler/amazon_crawler/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon_crawler/amazon_crawler/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amazon_crawler/amazon_crawler/spiders/product_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon_crawler/amazon_crawler/spiders/product_scrapper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazon_crawler/amazon_crawler/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/amazon_crawler/amazon_crawler/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +38,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -108,7 +110,7 @@
       <workItem from="1560543532584" duration="672000" />
       <workItem from="1560600083195" duration="16000" />
       <workItem from="1560859162210" duration="215000" />
-      <workItem from="1564592735557" duration="274000" />
+      <workItem from="1564592735557" duration="1205000" />
     </task>
     <servers />
   </component>
